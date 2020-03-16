@@ -69,3 +69,26 @@ C:\Users\clatonh\Documents\Mesh\Kinect\Projects\Backup Kinect Slider\Kinect Slid
 C:\Users\clatonh\Documents\Mesh\Kinect\Projects\Backup Kinect Slider\Kinect Slider\bin\Debug\Microsoft.Office.Tools.Common.v4.0.Utilities.xml
 C:\Users\clatonh\Documents\Mesh\Kinect\Projects\Backup Kinect Slider\Kinect Slider\obj\Debug\Kinect Slider.dll
 C:\Users\clatonh\Documents\Mesh\Kinect\Projects\Backup Kinect Slider\Kinect Slider\obj\Debug\Kinect Slider.pdb
+C:\Users\clatonh\OneDrive\LiveMesh\Kinect\Projects\Backup Kinect Slider\Kinect-Slider\Kinect Slider\bin\Debug\Kinect Slider.dll
+C:\Users\clatonh\OneDrive\LiveMesh\Kinect\Projects\Backup Kinect Slider\Kinect-Slider\Kinect Slider\bin\Debug\Kinect Slider.pdb
+C:\Users\clatonh\OneDrive\LiveMesh\Kinect\Projects\Backup Kinect Slider\Kinect-Slider\Kinect Slider\bin\Debug\Kinect Slider.dll.manifest
+C:\Users\clatonh\OneDrive\LiveMesh\Kinect\Projects\Backup Kinect Slider\Kinect-Slider\Kinect Slider\bin\Debug\Kinect Slider.vsto
+C:\Users\clatonh\OneDrive\LiveMesh\Kinect\Projects\Backup Kinect Slider\Kinect-Slider\Kinect Slider\bin\Debug\Coding4Fun.Kinect.WinForm.dll
+C:\Users\clatonh\OneDrive\LiveMesh\Kinect\Projects\Backup Kinect Slider\Kinect-Slider\Kinect Slider\bin\Debug\Microsoft.Kinect.dll
+C:\Users\clatonh\OneDrive\LiveMesh\Kinect\Projects\Backup Kinect Slider\Kinect-Slider\Kinect Slider\bin\Debug\Microsoft.Office.Tools.Common.v4.0.Utilities.dll
+C:\Users\clatonh\OneDrive\LiveMesh\Kinect\Projects\Backup Kinect Slider\Kinect-Slider\Kinect Slider\bin\Debug\Microsoft.Office.Tools.v4.0.Framework.dll
+C:\Users\clatonh\OneDrive\LiveMesh\Kinect\Projects\Backup Kinect Slider\Kinect-Slider\Kinect Slider\bin\Debug\Microsoft.VisualStudio.Tools.Applications.Runtime.dll
+C:\Users\clatonh\OneDrive\LiveMesh\Kinect\Projects\Backup Kinect Slider\Kinect-Slider\Kinect Slider\bin\Debug\Coding4Fun.Kinect.WinForm.pdb
+C:\Users\clatonh\OneDrive\LiveMesh\Kinect\Projects\Backup Kinect Slider\Kinect-Slider\Kinect Slider\obj\Debug\Kinect Slider.csprojAssemblyReference.cache
+C:\Users\clatonh\OneDrive\LiveMesh\Kinect\Projects\Backup Kinect Slider\Kinect-Slider\Kinect Slider\obj\Debug\Kinect_Slider.frmFB.resources
+C:\Users\clatonh\OneDrive\LiveMesh\Kinect\Projects\Backup Kinect Slider\Kinect-Slider\Kinect Slider\obj\Debug\Kinect_Slider.frmKinectInit.resources
+C:\Users\clatonh\OneDrive\LiveMesh\Kinect\Projects\Backup Kinect Slider\Kinect-Slider\Kinect Slider\obj\Debug\Kinect_Slider.frmNext.resources
+C:\Users\clatonh\OneDrive\LiveMesh\Kinect\Projects\Backup Kinect Slider\Kinect-Slider\Kinect Slider\obj\Debug\Kinect_Slider.frmPrevious.resources
+C:\Users\clatonh\OneDrive\LiveMesh\Kinect\Projects\Backup Kinect Slider\Kinect-Slider\Kinect Slider\obj\Debug\Kinect_Slider.frmtest.resources
+C:\Users\clatonh\OneDrive\LiveMesh\Kinect\Projects\Backup Kinect Slider\Kinect-Slider\Kinect Slider\obj\Debug\Kinect_Slider.Properties.Resources.resources
+C:\Users\clatonh\OneDrive\LiveMesh\Kinect\Projects\Backup Kinect Slider\Kinect-Slider\Kinect Slider\obj\Debug\Kinect_Slider.Ribbon1.resources
+C:\Users\clatonh\OneDrive\LiveMesh\Kinect\Projects\Backup Kinect Slider\Kinect-Slider\Kinect Slider\obj\Debug\Kinect Slider.csproj.GenerateResource.cache
+C:\Users\clatonh\OneDrive\LiveMesh\Kinect\Projects\Backup Kinect Slider\Kinect-Slider\Kinect Slider\obj\Debug\Kinect Slider.csproj.CoreCompileInputs.cache
+C:\Users\clatonh\OneDrive\LiveMesh\Kinect\Projects\Backup Kinect Slider\Kinect-Slider\Kinect Slider\obj\Debug\Kinect Slider.csproj.CopyComplete
+C:\Users\clatonh\OneDrive\LiveMesh\Kinect\Projects\Backup Kinect Slider\Kinect-Slider\Kinect Slider\obj\Debug\Kinect Slider.dll
+C:\Users\clatonh\OneDrive\LiveMesh\Kinect\Projects\Backup Kinect Slider\Kinect-Slider\Kinect Slider\obj\Debug\Kinect Slider.pdb

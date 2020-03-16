@@ -58,6 +58,7 @@
             this.group1.SuspendLayout();
             this.group3.SuspendLayout();
             this.group4.SuspendLayout();
+            this.SuspendLayout();
             // 
             // tab1
             // 
@@ -177,6 +178,7 @@
             this.group3.PerformLayout();
             this.group4.ResumeLayout(false);
             this.group4.PerformLayout();
+            this.ResumeLayout(false);
 
         }
 

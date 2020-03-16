@@ -9,7 +9,7 @@ using ScCO = System.Windows.Forms;
 using Microsoft.Office.Tools.Ribbon;
 using PowerPoint = Microsoft.Office.Interop.PowerPoint;
 using Coding4Fun.Kinect.WinForm;
-using Microsoft.OfficeLabs.Update;
+//using Microsoft.OfficeLabs.Update;
 
 using Microsoft.Kinect;
 using Kinect.Toolbox;
