@@ -1,0 +1,90 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29009.5
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kinect Slider", "Kinect Slider\Kinect Slider.csproj", "{D464CCCF-143C-419F-8DDC-89E380C4AAB2}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup1\Setup1.vdproj", "{9A719719-B115-4FE2-97C3-164A12F4AF10}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		CD_ROM|Any CPU = CD_ROM|Any CPU
+		CD_ROM|Mixed Platforms = CD_ROM|Mixed Platforms
+		CD_ROM|x86 = CD_ROM|x86
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|x86 = Debug|x86
+		DVD-5|Any CPU = DVD-5|Any CPU
+		DVD-5|Mixed Platforms = DVD-5|Mixed Platforms
+		DVD-5|x86 = DVD-5|x86
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|x86 = Release|x86
+		SingleImage|Any CPU = SingleImage|Any CPU
+		SingleImage|Mixed Platforms = SingleImage|Mixed Platforms
+		SingleImage|x86 = SingleImage|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D464CCCF-143C-419F-8DDC-89E380C4AAB2}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
+		{D464CCCF-143C-419F-8DDC-89E380C4AAB2}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
+		{D464CCCF-143C-419F-8DDC-89E380C4AAB2}.CD_ROM|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{D464CCCF-143C-419F-8DDC-89E380C4AAB2}.CD_ROM|Mixed Platforms.Build.0 = Release|Any CPU
+		{D464CCCF-143C-419F-8DDC-89E380C4AAB2}.CD_ROM|x86.ActiveCfg = Release|Any CPU
+		{D464CCCF-143C-419F-8DDC-89E380C4AAB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D464CCCF-143C-419F-8DDC-89E380C4AAB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D464CCCF-143C-419F-8DDC-89E380C4AAB2}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{D464CCCF-143C-419F-8DDC-89E380C4AAB2}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{D464CCCF-143C-419F-8DDC-89E380C4AAB2}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D464CCCF-143C-419F-8DDC-89E380C4AAB2}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
+		{D464CCCF-143C-419F-8DDC-89E380C4AAB2}.DVD-5|Any CPU.Build.0 = Debug|Any CPU
+		{D464CCCF-143C-419F-8DDC-89E380C4AAB2}.DVD-5|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{D464CCCF-143C-419F-8DDC-89E380C4AAB2}.DVD-5|Mixed Platforms.Build.0 = Debug|Any CPU
+		{D464CCCF-143C-419F-8DDC-89E380C4AAB2}.DVD-5|x86.ActiveCfg = Debug|Any CPU
+		{D464CCCF-143C-419F-8DDC-89E380C4AAB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D464CCCF-143C-419F-8DDC-89E380C4AAB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D464CCCF-143C-419F-8DDC-89E380C4AAB2}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{D464CCCF-143C-419F-8DDC-89E380C4AAB2}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{D464CCCF-143C-419F-8DDC-89E380C4AAB2}.Release|x86.ActiveCfg = Release|Any CPU
+		{D464CCCF-143C-419F-8DDC-89E380C4AAB2}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
+		{D464CCCF-143C-419F-8DDC-89E380C4AAB2}.SingleImage|Any CPU.Build.0 = Release|Any CPU
+		{D464CCCF-143C-419F-8DDC-89E380C4AAB2}.SingleImage|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{D464CCCF-143C-419F-8DDC-89E380C4AAB2}.SingleImage|Mixed Platforms.Build.0 = Release|Any CPU
+		{D464CCCF-143C-419F-8DDC-89E380C4AAB2}.SingleImage|x86.ActiveCfg = Release|Any CPU
+		{9A719719-B115-4FE2-97C3-164A12F4AF10}.CD_ROM|Any CPU.ActiveCfg = Release
+		{9A719719-B115-4FE2-97C3-164A12F4AF10}.CD_ROM|Any CPU.Build.0 = Release
+		{9A719719-B115-4FE2-97C3-164A12F4AF10}.CD_ROM|Mixed Platforms.ActiveCfg = Release
+		{9A719719-B115-4FE2-97C3-164A12F4AF10}.CD_ROM|Mixed Platforms.Build.0 = Release
+		{9A719719-B115-4FE2-97C3-164A12F4AF10}.CD_ROM|x86.ActiveCfg = Release
+		{9A719719-B115-4FE2-97C3-164A12F4AF10}.CD_ROM|x86.Build.0 = Release
+		{9A719719-B115-4FE2-97C3-164A12F4AF10}.Debug|Any CPU.ActiveCfg = Debug
+		{9A719719-B115-4FE2-97C3-164A12F4AF10}.Debug|Mixed Platforms.ActiveCfg = Debug
+		{9A719719-B115-4FE2-97C3-164A12F4AF10}.Debug|x86.ActiveCfg = Debug
+		{9A719719-B115-4FE2-97C3-164A12F4AF10}.DVD-5|Any CPU.ActiveCfg = Debug
+		{9A719719-B115-4FE2-97C3-164A12F4AF10}.DVD-5|Any CPU.Build.0 = Debug
+		{9A719719-B115-4FE2-97C3-164A12F4AF10}.DVD-5|Mixed Platforms.ActiveCfg = Debug
+		{9A719719-B115-4FE2-97C3-164A12F4AF10}.DVD-5|Mixed Platforms.Build.0 = Debug
+		{9A719719-B115-4FE2-97C3-164A12F4AF10}.DVD-5|x86.ActiveCfg = Debug
+		{9A719719-B115-4FE2-97C3-164A12F4AF10}.DVD-5|x86.Build.0 = Debug
+		{9A719719-B115-4FE2-97C3-164A12F4AF10}.Release|Any CPU.ActiveCfg = Release
+		{9A719719-B115-4FE2-97C3-164A12F4AF10}.Release|Mixed Platforms.ActiveCfg = Release
+		{9A719719-B115-4FE2-97C3-164A12F4AF10}.Release|x86.ActiveCfg = Release
+		{9A719719-B115-4FE2-97C3-164A12F4AF10}.SingleImage|Any CPU.ActiveCfg = Release
+		{9A719719-B115-4FE2-97C3-164A12F4AF10}.SingleImage|Any CPU.Build.0 = Release
+		{9A719719-B115-4FE2-97C3-164A12F4AF10}.SingleImage|Mixed Platforms.ActiveCfg = Release
+		{9A719719-B115-4FE2-97C3-164A12F4AF10}.SingleImage|Mixed Platforms.Build.0 = Release
+		{9A719719-B115-4FE2-97C3-164A12F4AF10}.SingleImage|x86.ActiveCfg = Release
+		{9A719719-B115-4FE2-97C3-164A12F4AF10}.SingleImage|x86.Build.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		BuildVersion_StartDate = 2011/8/30
+		BuildVersion_BuildVersioningStyle = None.None.Increment.None
+		BuildVersion_AssemblyInfoFilename = Kinect Slider\Properties\AssemblyInfo.cs
+		BuildVersion_UpdateAssemblyVersion = True
+		BuildVersion_UpdateFileVersion = True
+		SolutionGuid = {E9F184C0-F4B6-46FF-B497-807F04343548}
+	EndGlobalSection
+EndGlobal

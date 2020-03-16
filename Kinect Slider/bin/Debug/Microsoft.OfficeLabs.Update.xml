@@ -1,0 +1,2699 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.OfficeLabs.Update</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.OfficeLabs.Update.ApplyUpdateForm">
+            <summary>
+                Default implementation of an apply update form.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.ApplyUpdateForm.#ctor">
+            <summary>
+                Creates an instance of ApplyUpdateForm class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.ApplyUpdateForm.#ctor(Microsoft.OfficeLabs.Update.Manifest,Microsoft.OfficeLabs.Update.Manifest)">
+            <summary>
+                Creates an instance of ApplyUpdateForm class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.ApplyUpdateForm.OnActivated(System.EventArgs)">
+            <summary>
+                Override OnActivated() to recompute the display fields.
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.ApplyUpdateForm.OnPaint(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+                Override OnPaint() to paint custom background and bordersf.
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="P:Microsoft.OfficeLabs.Update.ApplyUpdateForm.CurrentManifest">
+            <summary>
+                Gets or sets the current manifest.
+            </summary>
+        </member>
+        <member name="P:Microsoft.OfficeLabs.Update.ApplyUpdateForm.UpdateManifest">
+            <summary>
+                Gest or sets the update manifest.
+            </summary>
+        </member>
+        <member name="T:Microsoft.OfficeLabs.Update.AutomaticUpdater">
+            <summary>
+                Automatically manages the checking for availability, downloading,
+                and installation of updates for an application.
+            </summary>
+            <remarks>
+              <para>
+                The AutomaticUpdater class is the easy to use high level interface
+                on top of <see cref="P:Microsoft.OfficeLabs.Update.AutomaticUpdater.Updater"/>. A simplified usage model is
+                applied, where the user of this class simply follows the following
+                steps:
+              </para>
+              <para>
+                <b>Add an <see cref="T:Microsoft.OfficeLabs.Update.AssemblyProductCodeAttribute"/> into your
+                assembly.</b>
+              </para>
+              <para>
+                Use the same ProductCode that you are using as part of your .MSI
+                so that the current version can be uninstalled properly.
+                Typically a good place to put this attribute would be
+                your AssemblyInfo.cs.
+              </para>
+              <para>
+                <b>Call <see cref="M:Microsoft.OfficeLabs.Update.AutomaticUpdater.CheckAndDownloadAsync"/>.</b>
+              </para>  
+              <para>
+                Make this call in your main form's Load event handler, before
+                calling Application.Run(), or anywhere you would like to initiate
+                the background thread of checking for updates and downloading the
+                update if available.
+              </para>
+              <para>
+                <b>Call <see cref="M:Microsoft.OfficeLabs.Update.AutomaticUpdater.Apply"/>.</b>
+              </para>
+              <para>
+                Make this call as your main form is about to close. If an update
+                was available and successfully downloaded, a dialog box will be
+                displayed showing details about the update and asking the user if
+                they wish to apply the update. If the user responds affirmatively,
+                then the updater will spawn another process that waits for the
+                current application to end, and will go through the process of
+                uninstalling the current application, and installing the new
+                downloaded .MSI.
+              </para>
+            </remarks>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.AutomaticUpdater.Snapshot">
+            <summary>
+                Takes a snapshot of the current manifest information. This must be called
+                from the primary thread of the application.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.AutomaticUpdater.CheckAndDownloadAsync">
+            <summary>
+                Starts a background thread which checks for updates and if
+                initiates downloads asynchronously.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.AutomaticUpdater.Apply">
+            <summary>
+                If an update was downloaded successfully, the user will be 
+                presented with a dialog to confirm that they want to install
+                the update. If the user responds affirmatively, then another
+                process is launched to uninstall the current version and
+                install the new downloaded version.
+            </summary>
+            <returns>
+              <para>
+                DialogResult.Yes means the user clicked Yes, to install the 
+                update. 
+              </para>
+              <para>
+                DialogResult.No means the user doesn't want to install the 
+                update, but will be reminded next time around.
+              </para>
+              <para>
+                DialogResult.Skip means the user doesn't want to install the 
+                update, and will not be reminded until a newer update is
+                available.
+              </para>
+            </returns>
+            <remarks>
+              <para>
+                Call this method on your primary UI thread because this may
+                bring up some UI if there is an update available.
+              </para>
+            </remarks>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.AutomaticUpdater.Apply(System.Boolean)">
+            <summary>
+                If an update was downloaded successfully, the user will be 
+                presented with a dialog to confirm that they want to install
+                the update. If the user responds affirmatively, then another
+                process is launched to uninstall the current version and
+                install the new downloaded version.
+            </summary>
+            <param name="restart">
+                Whether to restart this application after update.
+            </param>
+            <returns>
+              <para>
+                DialogResult.Yes means the user clicked Yes, to install the 
+                update. 
+              </para>
+              <para>
+                DialogResult.No means the user doesn't want to install the 
+                update, but will be reminded next time around.
+              </para>
+              <para>
+                DialogResult.Skip means the user doesn't want to install the 
+                update, and will not be reminded until a newer update is
+                available.
+              </para>
+            </returns>
+            <remarks>
+              <para>
+                Call this method on your primary UI thread because this may
+                bring up some UI if there is an update available.
+              </para>
+            </remarks>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.AutomaticUpdater.Apply(System.String)">
+            <summary>
+                If an update was downloaded successfully, the user will be 
+                presented with a dialog to confirm that they want to install
+                the update. If the user responds affirmatively, then another
+                process is launched to uninstall the current version and
+                install the new downloaded version.
+            </summary>
+            <param name="restartApp">
+                Application to run after update has been applied.
+            </param>
+            <returns>
+              <para>
+                DialogResult.Yes means the user clicked Yes, to install the 
+                update. 
+              </para>
+              <para>
+                DialogResult.No means the user doesn't want to install the 
+                update, but will be reminded next time around.
+              </para>
+              <para>
+                DialogResult.Skip means the user doesn't want to install the 
+                update, and will not be reminded until a newer update is
+                available.
+              </para>
+            </returns>
+            <remarks>
+              <para>
+                Call this method on your primary UI thread because this may
+                bring up some UI if there is an update available.
+              </para>
+            </remarks>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.AutomaticUpdater.Finalize">
+            <summary>
+                Shuts down an instance of the <see cref="T:Microsoft.OfficeLabs.Update.AutomaticUpdater"/> class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.AutomaticUpdater.Dispose">
+            <summary>
+                Dispose of this instance of the <see cref="T:Microsoft.OfficeLabs.Update.AutomaticUpdater"/> class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.OfficeLabs.Update.AutomaticUpdater.IsUpdateEnabled">
+            <summary>
+                Gets or sets whether updates are enabled.
+            </summary>
+        </member>
+        <member name="P:Microsoft.OfficeLabs.Update.AutomaticUpdater.UpdaterState">
+            <summary>
+                Gets the current AutomaticUpdater internal state.
+            </summary>
+            <remarks>
+                This property is only provided as a convenience for users of
+                this class as a way of monitoring the internal state. Most
+                users will probably not even need or care about this property
+                unless they are doing some customizations with the underlying
+                <see cref="P:Microsoft.OfficeLabs.Update.AutomaticUpdater.Updater"/>.
+            </remarks>
+        </member>
+        <member name="P:Microsoft.OfficeLabs.Update.AutomaticUpdater.Updater">
+            <summary>
+                Gets the internal <see cref="P:Microsoft.OfficeLabs.Update.AutomaticUpdater.Updater"/>.
+            </summary>
+            <remarks>
+                This property is only provided as a convenience for users of
+                this class as a quick way to customize the behavior of the
+                stock <see cref="T:Microsoft.OfficeLabs.Update.AutomaticUpdater"/>. Most users will probably
+                not even need or care about this property.
+            </remarks>
+        </member>
+        <member name="T:Microsoft.OfficeLabs.Update.AutomaticUpdater.State">
+            <summary>
+                Possible states that the AutomaticUpdater maybe in.
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.AutomaticUpdater.State.Start">
+            <summary>
+                Waiting to start.
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.AutomaticUpdater.State.Checking">
+            <summary>
+                Checking for updates.
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.AutomaticUpdater.State.Waiting">
+            <summary>
+                Waiting between downloads, and the next check for updates.
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.AutomaticUpdater.State.Downloading">
+            <summary>
+                Downloading an update.
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.AutomaticUpdater.State.Applying">
+            <summary>
+                Initiated applying an update.
+            </summary>
+        </member>
+        <member name="T:Microsoft.OfficeLabs.Update.IManifestProvider">
+            <summary>
+            Defines a method to return a manifest.
+            </summary>
+        </member>
+        <member name="P:Microsoft.OfficeLabs.Update.IManifestProvider.Manifest">
+            <summary>
+            Returns a manifest that may have been read from a file, a resource,
+            the registry or some other source.
+            </summary>
+            <returns>Manifest loaded from a location. null if not present.</returns>
+        </member>
+        <member name="T:Microsoft.OfficeLabs.Update.IDownloader">
+            <summary>
+                Provides the features required to support downloading by various methods.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IDownloader.Download(Microsoft.OfficeLabs.Update.Manifest)">
+            <summary>
+                Downloads the files in the <see cref="T:Microsoft.OfficeLabs.Update.Manifest"/> synchronously.
+            </summary>
+            <param name="manifest">Manifest with files to download.</param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IDownloader.DownloadAsync(Microsoft.OfficeLabs.Update.Manifest)">
+            <summary>
+                Downloads the files in the <see cref="T:Microsoft.OfficeLabs.Update.Manifest"/> asynchronously.
+            </summary>
+            <param name="manifest">Manifest with files to download.</param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IDownloader.DownloadCancelAsync">
+            <summary>
+                Aborts the current asynchronous download.
+            </summary>
+        </member>
+        <member name="P:Microsoft.OfficeLabs.Update.IDownloader.DownloadPath">
+            <summary>
+                Gets or sets the path to store downloaded files in.
+            </summary>
+            <value>
+                Path where downloaded files should be stored.
+            </value>
+        </member>
+        <member name="P:Microsoft.OfficeLabs.Update.IDownloader.LastError">
+            <summary>
+                Gets the last exception encountered by the downloader.
+            </summary>
+        </member>
+        <member name="E:Microsoft.OfficeLabs.Update.IDownloader.DownloadCompleted">
+            <summary>
+                Occurs when the downloader has completed downloading.
+            </summary>
+            <remarks>
+              <para>
+                If an error occurs while downloading, <see cref="T:Microsoft.OfficeLabs.Update.DownloadCompletedEventArgs"/>.Error
+                will have the last error encountered.
+              </para>
+              <para>
+                If the download was canceled, <see cref="T:Microsoft.OfficeLabs.Update.DownloadCompletedEventArgs"/>.Canceled
+                will be set to <b>true</b>.
+              </para>
+            </remarks>
+        </member>
+        <member name="T:Microsoft.OfficeLabs.Update.IBackgroundCopyCallback">
+            <summary>
+            Implement the IBackgroundCopyCallback interface to receive notification that a 
+            job is complete, has been modified, or is in error. Clients use this interface 
+            instead of polling for the status of the job.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyCallback.JobTransferred(Microsoft.OfficeLabs.Update.IBackgroundCopyJob)">
+            <summary>
+            Called when all of the files in the job have successfully transferred.
+            </summary>
+            <param name="pJob">Contains job-related information, such as the time the job completed, the number of bytes transferred, and the number of files transferred. Do not release pJob; BITS releases the interface when the method returns. </param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyCallback.JobError(Microsoft.OfficeLabs.Update.IBackgroundCopyJob,Microsoft.OfficeLabs.Update.IBackgroundCopyError)">
+            <summary>
+            Called when an error occurs.
+            </summary>
+            <param name="pJob">Contains job-related information, such as the number of bytes and files transferred before the error occurred. It also contains the methods to resume and cancel the job. Do not release pJob; BITS releases the interface when the JobError method returns.</param>
+            <param name="pError">Contains error information, such as the file being processed at the time the fatal error occurred and a description of the error. Do not release pError; BITS releases the interface when the JobError method returns.</param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyCallback.JobModification(Microsoft.OfficeLabs.Update.IBackgroundCopyJob,System.UInt32)">
+            <summary>
+            Called when a job is modified.
+            </summary>
+            <param name="pJob">Contains the methods for accessing property, progress, and state information of the job. Do not release pJob; BITS releases the interface when the JobModification method returns.</param>
+            <param name="dwReserved">Reserved for future use.</param>
+        </member>
+        <member name="T:Microsoft.OfficeLabs.Update.BitsDownloadErrorException">
+            <summary>
+            Exception thrown by BITS downloader when an error is found.
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.BitsDownloadErrorException.contextForError">
+            <summary>
+            The context for the error.
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.BitsDownloadErrorException.errorCode">
+            <summary>
+            The error code detected.
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.BitsDownloadErrorException.contextDescription">
+            <summary>
+            The description of the context.
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.BitsDownloadErrorException.errorDescription">
+            <summary>
+            The description of the error.
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.BitsDownloadErrorException.protocol">
+            <summary>
+            The protocol name.
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.BitsDownloadErrorException.fileLocalName">
+            <summary>
+            The file name where the file will be copied.
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.BitsDownloadErrorException.fileRemoteName">
+            <summary>
+            The remote file name that was downloaded.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.BitsDownloadErrorException.#ctor">
+            <summary>
+            Default constructor.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.BitsDownloadErrorException.#ctor(Microsoft.OfficeLabs.Update.IBackgroundCopyError,System.UInt32)">
+            <summary>
+            Creates an exception with the BITS error reference and a language id.
+            </summary>
+            <param name="error">The BITS error reference.</param>
+            <param name="langID">The language Id.</param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.BitsDownloadErrorException.#ctor(System.String)">
+            <summary>
+            Creates an exception with the specified message.
+            </summary>
+            <param name="message">The message of the exception.</param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.BitsDownloadErrorException.#ctor(System.String,System.Exception)">
+            <summary>
+            Creates an exception with the specified message and the inner exception detected.
+            </summary>
+            <param name="message">The message string.</param>
+            <param name="innerException">The inner exception reference.</param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.BitsDownloadErrorException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Constructor used by the serialization infrastructure.
+            </summary>
+            <param name="info">The serialization information for the object.</param>
+            <param name="context">The context for the serialization.</param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.BitsDownloadErrorException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Used by the serialization infrastructure.
+            </summary>
+            <param name="info">The serialization information.</param>
+            <param name="context">The serialization context.</param>
+        </member>
+        <member name="P:Microsoft.OfficeLabs.Update.BitsDownloadErrorException.Code">
+            <summary>
+            The error code.
+            </summary>
+        </member>
+        <member name="P:Microsoft.OfficeLabs.Update.BitsDownloadErrorException.Context">
+            <summary>
+            The error context.
+            </summary>
+        </member>
+        <member name="P:Microsoft.OfficeLabs.Update.BitsDownloadErrorException.ContextDescription">
+            <summary>
+            The context description.
+            </summary>
+        </member>
+        <member name="P:Microsoft.OfficeLabs.Update.BitsDownloadErrorException.Message">
+            <summary>
+            The error message.
+            </summary>
+        </member>
+        <member name="P:Microsoft.OfficeLabs.Update.BitsDownloadErrorException.Protocol">
+            <summary>
+            The protocol used.
+            </summary>
+        </member>
+        <member name="P:Microsoft.OfficeLabs.Update.BitsDownloadErrorException.LocalFileName">
+            <summary>
+            The local file name.
+            </summary>
+        </member>
+        <member name="P:Microsoft.OfficeLabs.Update.BitsDownloadErrorException.RemoteFileName">
+            <summary>
+            The remote file name.
+            </summary>
+        </member>
+        <member name="P:Microsoft.OfficeLabs.Update.BitsDownloadErrorException.IsInsufficientRangeSupport">
+            <summary>
+            Is this exception for the server not supporting HTTP 1.1 Content-Range.
+            </summary>
+        </member>
+        <member name="T:Microsoft.OfficeLabs.Update.BackgroundCopyManager">
+            <summary>
+            Entry point to the BITS infraestructure.
+            </summary>
+        </member>
+        <member name="T:Microsoft.OfficeLabs.Update.IBackgroundCopyManager">
+            <summary>
+            Use the IBackgroundCopyManager interface to create transfer jobs, 
+            retrieve an enumerator object that contains the jobs in the queue, 
+            and to retrieve individual jobs from the queue.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyManager.CreateJob(System.String,Microsoft.OfficeLabs.Update.BGJobType,System.Guid@,Microsoft.OfficeLabs.Update.IBackgroundCopyJob@)">
+            <summary>
+            Creates a new transfer job
+            </summary>
+            <param name="DisplayName">Null-terminated string that contains a display name for the job. Typically, the display name is used to identify the job in a user interface. Note that more than one job may have the same display name. Must not be NULL. The name is limited to 256 characters, not including the null terminator.</param>
+            <param name="pJobId">Uniquely identifies your job in the queue. Use this identifier when you call the IBackgroundCopyManager::GetJob method to get a job from the queue.</param>
+            <param name="ppJob">An IBackgroundCopyJob interface pointer that you use to modify the job's properties and specify the files to be transferred. To activate the job in the queue, call the IBackgroundCopyJob::Resume method. Release ppJob when done.</param>
+            <param name="Type">Type of transfer job, such as BG_JOB_TYPE_DOWNLOAD. For a list of transfer types, see the BG_JOB_TYPE enumeration. </param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyManager.GetJob(System.Guid@,Microsoft.OfficeLabs.Update.IBackgroundCopyJob@)">
+            <summary>
+            Retrieves a given job from the queue
+            </summary>
+            <param name="jobID">Identifies the job to retrieve from the transfer queue. The CreateJob method returns the job identifier.</param>
+            <param name="ppJob">An IBackgroundCopyJob interface pointer to the job specified by JobID. When done, release ppJob.</param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyManager.EnumJobs(System.UInt32,Microsoft.OfficeLabs.Update.IEnumBackgroundCopyJobs@)">
+            <summary>
+            Retrieves an enumerator object that you use to enumerate jobs in the queue
+            </summary>
+            <param name="dwFlags">Specifies whose jobs to include in the enumeration. If dwFlags is set to 0, the user receives all jobs that they own in the transfer queue. The following table lists the enumeration options. </param>
+            <param name="ppenum">An IEnumBackgroundCopyJobs interface pointer that you use to enumerate the jobs in the transfer queue. The contents of the enumerator depend on the value of dwFlags. Release ppEnumJobs when done. </param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyManager.GetErrorDescription(System.Int32,System.UInt32,System.String@)">
+            <summary>
+            Retrieves a description for the given error code
+            </summary>
+            <param name="hResult">Error code from a previous call to a BITS method.</param>
+            <param name="LanguageId">Identifies the language identifier to use to generate the description. To create the language identifier, use the MAKELANGID macro.</param>
+            <param name="pErrorDescription">Null-terminated string that contains a description of the error. Call the CoTaskMemFree function to free ppErrorDescription when done. </param>
+        </member>
+        <member name="T:Microsoft.OfficeLabs.Update.IBackgroundCopyJob">
+            <summary>
+            Use the IBackgroundCopyJob interface to add files to the job, 
+            set the priority level of the job, determine the state of the
+            job, and to start and stop the job.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyJob.AddFileSet(System.UInt32,Microsoft.OfficeLabs.Update.BGFileInfo@)">
+            <summary>
+            Adds multiple files to the job
+            </summary>
+            <param name="cFileCount">Number of elements in paFileSet. </param>
+            <param name="pFileSet">Array of BG_FILE_INFO structures that identify the local and remote file names of the files to transfer.</param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyJob.AddFile(System.String,System.String)">
+            <summary>
+            Adds a single file to the job
+            </summary>
+            <param name="LocalName">Null-terminated string that contains the name of the file on the server. For information on specifying the remote name, see the RemoteName member and Remarks section of the BG_FILE_INFO structure. </param>
+            <param name="RemoteUrl">Null-terminated string that contains the name of the file on the client. For information on specifying the local name, see the LocalName member and Remarks section of the BG_FILE_INFO structure. </param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyJob.EnumFiles(Microsoft.OfficeLabs.Update.IEnumBackgroundCopyFiles@)">
+            <summary>
+            Returns an interface pointer to an enumerator
+            object that you use to enumerate the files in the job
+            </summary>
+            <param name="pEnum">IEnumBackgroundCopyFiles interface pointer that you use to enumerate the files in the job. Release ppEnumFiles when done. </param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyJob.Suspend">
+            <summary>
+            Pauses the job
+            </summary>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyJob.Resume">
+            <summary>
+            Restarts a suspended job
+            </summary>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyJob.Cancel">
+            <summary>
+            Cancels the job and removes temporary files from the client
+            </summary>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyJob.Complete">
+            <summary>
+            Ends the job and saves the transferred files on the client
+            </summary>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyJob.GetId(System.Guid@)">
+            <summary>
+            Retrieves the identifier of the job in the queue
+            </summary>
+            <param name="pVal">GUID that identifies the job within the BITS queue.</param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyJob.GetType(Microsoft.OfficeLabs.Update.BGJobType@)">
+            <summary>
+            Retrieves the type of transfer being performed, 
+            such as a file download
+            </summary>
+            <param name="pVal">Type of transfer being performed. For a list of transfer types, see the BG_JOB_TYPE enumeration type. </param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyJob.GetProgress(Microsoft.OfficeLabs.Update.BGJobProgress@)">
+            <summary>
+            Retrieves job-related progress information, 
+            such as the number of bytes and files transferred 
+            to the client
+            </summary>
+            <param name="pVal">Contains data that you can use to calculate the percentage of the job that is complete. For more information, see BG_JOB_PROGRESS. </param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyJob.GetTimes(Microsoft.OfficeLabs.Update.BGJobTimes@)">
+            <summary>
+            Retrieves timestamps for activities related
+            to the job, such as the time the job was created
+            </summary>
+            <param name="pVal">Contains job-related time stamps. For available time stamps, see the BG_JOB_TIMES structure.</param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyJob.GetState(Microsoft.OfficeLabs.Update.BGJobState@)">
+            <summary>
+            Retrieves the state of the job
+            </summary>
+            <param name="pVal">Current state of the job. For example, the state reflects whether the job is in error, transferring data, or suspended. For a list of job states, see the BG_JOB_STATE enumeration type. </param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyJob.GetError(Microsoft.OfficeLabs.Update.IBackgroundCopyError@)">
+            <summary>
+            Retrieves an interface pointer to 
+            the error object after an error occurs
+            </summary>
+            <param name="ppError">Error interface that provides the error code, a description of the error, and the context in which the error occurred. This parameter also identifies the file being transferred at the time the error occurred. Release ppError when done. </param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyJob.GetOwner(System.String@)">
+            <summary>
+            Retrieves the job owner's identity
+            </summary>
+            <param name="pVal">Null-terminated string that contains the string version of the SID that identifies the job's owner. Call the CoTaskMemFree function to free ppOwner when done. </param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyJob.SetDisplayName(System.String)">
+            <summary>
+            Specifies a display name that identifies the job in 
+            a user interface
+            </summary>
+            <param name="Val">Null-terminated string that identifies the job. Must not be NULL. The length of the string is limited to 256 characters, not including the null terminator. </param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyJob.GetDisplayName(System.String@)">
+            <summary>
+            Retrieves the display name that identifies the job
+            </summary>
+            <param name="pVal">Null-terminated string that contains the display name that identifies the job. More than one job can have the same display name. Call the CoTaskMemFree function to free ppDisplayName when done.</param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyJob.SetDescription(System.String)">
+            <summary>
+            Specifies a description of the job
+            </summary>
+            <param name="Val">Null-terminated string that provides additional information about the job. The length of the string is limited to 1,024 characters, not including the null terminator.</param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyJob.GetDescription(System.String@)">
+            <summary>
+            Retrieves the description of the job
+            </summary>
+            <param name="pVal">Null-terminated string that contains a short description of the job. Call the CoTaskMemFree function to free ppDescription when done. </param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyJob.SetPriority(Microsoft.OfficeLabs.Update.BGJobPriority)">
+            <summary>
+            Specifies the priority of the job relative to 
+            other jobs in the transfer queue
+            </summary>
+            <param name="Val">Specifies the priority level of your job relative to other jobs in the transfer queue. The default is BG_JOB_PRIORITY_NORMAL. For a list of priority levels, see the BG_JOB_PRIORITY enumeration. </param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyJob.GetPriority(Microsoft.OfficeLabs.Update.BGJobPriority@)">
+            <summary>
+            Retrieves the priority level you have set for the job.
+            </summary>
+            <param name="pVal">Priority of the job relative to other jobs in the transfer queue. </param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyJob.SetNotifyFlags(System.UInt32)">
+            <summary>
+            Specifies the type of event notification to receive
+            </summary>
+            <param name="Val">Set one or more of the following flags to identify the events that you want to receive. </param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyJob.GetNotifyFlags(System.UInt32@)">
+            <summary>
+            Retrieves the event notification (callback) flags 
+            you have set for your application.
+            </summary>
+            <param name="pVal">Identifies the events that your application receives. The following table lists the event notification flag values. </param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyJob.SetNotifyInterface(System.Object)">
+            <summary>
+            Specifies a pointer to your implementation of the 
+            IBackgroundCopyCallback interface (callbacks). The 
+            interface receives notification based on the event 
+            notification flags you set
+            </summary>
+            <param name="Val">An IBackgroundCopyCallback interface pointer. To remove the current callback interface pointer, set this parameter to NULL.</param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyJob.GetNotifyInterface(System.Object@)">
+            <summary>
+            Retrieves a pointer to your implementation 
+            of the IBackgroundCopyCallback interface (callbacks).
+            </summary>
+            <param name="pVal">Interface pointer to your implementation of the IBackgroundCopyCallback interface. When done, release ppNotifyInterface.</param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyJob.SetMinimumRetryDelay(System.UInt32)">
+            <summary>
+            Specifies the minimum length of time that BITS waits after 
+            encountering a transient error condition before trying to 
+            transfer the file
+            </summary>
+            <param name="Seconds">Minimum length of time, in seconds, that BITS waits after encountering a transient error before trying to transfer the file. The default retry delay is 600 seconds (10 minutes). The minimum retry delay that you can specify is 60 seconds. If you specify a value less than 60 seconds, BITS changes the value to 60 seconds. If the value exceeds the no-progress-timeout value retrieved from the GetNoProgressTimeout method, BITS will not retry the transfer and moves the job to the BG_JOB_STATE_ERROR state. </param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyJob.GetMinimumRetryDelay(System.UInt32@)">
+            <summary>
+            Retrieves the minimum length of time that BITS waits after 
+            encountering a transient error condition before trying to 
+            transfer the file
+            </summary>
+            <param name="Seconds">Length of time, in seconds, that the service waits after encountering a transient error before trying to transfer the file. </param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyJob.SetNoProgressTimeout(System.UInt32)">
+            <summary>
+            Specifies the length of time that BITS continues to try to 
+            transfer the file after encountering a transient error 
+            condition
+            </summary>
+            <param name="Seconds">Length of time, in seconds, that BITS tries to transfer the file after the first transient error occurs. The default retry period is 1,209,600 seconds (14 days). Set the retry period to 0 to prevent retries and to force the job into the BG_JOB_STATE_ERROR state for all errors. If the retry period value exceeds the JobInactivityTimeout Group Policy value (90-day default), BITS cancels the job after the policy value is exceeded.</param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyJob.GetNoProgressTimeout(System.UInt32@)">
+            <summary>
+            Retrieves the length of time that BITS continues to try to 
+            transfer the file after encountering a transient error condition
+            </summary>
+            <param name="Seconds">Length of time, in seconds, that the service tries to transfer the file after a transient error occurs. </param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyJob.GetErrorCount(System.UInt32@)">
+            <summary>
+            Retrieves the number of times the job was interrupted by 
+            network failure or server unavailability
+            </summary>
+            <param name="Errors">Number of errors that occurred while BITS tried to transfer the job. The count increases when the job moves from the BG_JOB_STATE_TRANSFERRING state to the BG_JOB_STATE_TRANSIENT_ERROR or BG_JOB_STATE_ERROR state.</param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyJob.SetProxySettings(Microsoft.OfficeLabs.Update.BGJobProxyUsage,System.String,System.String)">
+            <summary>
+            Specifies which proxy to use to transfer the files
+            </summary>
+            <param name="ProxyBypassList">Null-terminated string that contains an optional list of host names, IP addresses, or both, that can bypass the proxy. The list is space-delimited. For details on specifying a bypass proxy, see Remarks. This parameter must be NULL if the value of ProxyUsage is BG_JOB_PROXY_USAGE_PRECONFIG, BG_JOB_PROXY_USAGE_NO_PROXY, or BG_JOB_PROXY_USAGE_NO_AUTODETECT. The length of the proxy bypass list is limited to 4,000 characters, not including the null terminator. </param>
+            <param name="ProxyList">Null-terminated string that contains the proxies to use to transfer files. The list is space-delimited. For details on specifying a proxy, see Remarks. This parameter must be NULL if the value of ProxyUsage is BG_JOB_PROXY_USAGE_PRECONFIG, BG_JOB_PROXY_USAGE_NO_PROXY, or BG_JOB_PROXY_USAGE_NO_AUTODETECT. The length of the proxy list is limited to 4,000 characters, not including the null terminator. </param>
+            <param name="ProxyUsage">Specifies whether to use the user's proxy settings, not to use a proxy, or to use application-specified proxy settings. The default is to use the user's proxy settings, BG_JOB_PROXY_USAGE_PRECONFIG. For a list of proxy options, see the BG_JOB_PROXY_USAGE enumeration.</param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyJob.GetProxySettings(Microsoft.OfficeLabs.Update.BGJobProxyUsage@,System.String@,System.String@)">
+            <summary>
+            Retrieves the proxy settings the job uses to transfer the files
+            </summary>
+            <param name="pProxyBypassList">Null-terminated string that contains an optional list of host names or IP addresses, or both, that were not routed through the proxy. The list is space-delimited. For details on the format of the string, see the Listing the Proxy Bypass section of Enabling Internet Functionality. Call the CoTaskMemFree function to free ppProxyBypassList when done.</param>
+            <param name="pProxyList">Null-terminated string that contains one or more proxies to use to transfer files. The list is space-delimited. For details on the format of the string, see the Listing Proxy Servers section of Enabling Internet Functionality. Call the CoTaskMemFree function to free ppProxyList when done.</param>
+            <param name="pProxyUsage">Specifies the proxy settings the job uses to transfer the files. For a list of proxy options, see the BG_JOB_PROXY_USAGE enumeration. </param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyJob.TakeOwnership">
+            <summary>
+            Changes the ownership of the job to the current user
+            </summary>
+        </member>
+        <member name="T:Microsoft.OfficeLabs.Update.IBackgroundCopyJob2">
+            <summary>
+            Use the IBackgroundCopyJob2 interface to retrieve reply data from an upload-reply job, determine the progress of the reply data transfer to the client, request command line execution, and provide credentials for proxy and remote server authentication requests.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyJob2.AddFileSet(System.UInt32,Microsoft.OfficeLabs.Update.BGFileInfo@)">
+            <summary>
+            Adds multiple files to the job
+            </summary>
+            <param name="cFileCount">Number of elements in paFileSet. </param>
+            <param name="pFileSet">Array of BG_FILE_INFO structures that identify the local and remote file names of the files to transfer.</param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyJob2.AddFile(System.String,System.String)">
+            <summary>
+            Adds a single file to the job
+            </summary>
+            <param name="LocalName">Null-terminated string that contains the name of the file on the server. For information on specifying the remote name, see the RemoteName member and Remarks section of the BG_FILE_INFO structure. </param>
+            <param name="RemoteUrl">Null-terminated string that contains the name of the file on the client. For information on specifying the local name, see the LocalName member and Remarks section of the BG_FILE_INFO structure. </param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyJob2.EnumFiles(Microsoft.OfficeLabs.Update.IEnumBackgroundCopyFiles@)">
+            <summary>
+            Returns an interface pointer to an enumerator
+            object that you use to enumerate the files in the job
+            </summary>
+            <param name="pEnum">IEnumBackgroundCopyFiles interface pointer that you use to enumerate the files in the job. Release ppEnumFiles when done. </param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyJob2.Suspend">
+            <summary>
+            Pauses the job
+            </summary>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyJob2.Resume">
+            <summary>
+            Restarts a suspended job
+            </summary>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyJob2.Cancel">
+            <summary>
+            Cancels the job and removes temporary files from the client
+            </summary>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyJob2.Complete">
+            <summary>
+            Ends the job and saves the transferred files on the client
+            </summary>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyJob2.GetId(System.Guid@)">
+            <summary>
+            Retrieves the identifier of the job in the queue
+            </summary>
+            <param name="pVal">GUID that identifies the job within the BITS queue.</param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyJob2.GetType(Microsoft.OfficeLabs.Update.BGJobType@)">
+            <summary>
+            Retrieves the type of transfer being performed, 
+            such as a file download
+            </summary>
+            <param name="pVal">Type of transfer being performed. For a list of transfer types, see the BG_JOB_TYPE enumeration type. </param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyJob2.GetProgress(Microsoft.OfficeLabs.Update.BGJobProgress@)">
+            <summary>
+            Retrieves job-related progress information, 
+            such as the number of bytes and files transferred 
+            to the client
+            </summary>
+            <param name="pVal">Contains data that you can use to calculate the percentage of the job that is complete. For more information, see BG_JOB_PROGRESS. </param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyJob2.GetTimes(Microsoft.OfficeLabs.Update.BGJobTimes@)">
+            <summary>
+            Retrieves timestamps for activities related
+            to the job, such as the time the job was created
+            </summary>
+            <param name="pVal">Contains job-related time stamps. For available time stamps, see the BG_JOB_TIMES structure.</param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyJob2.GetState(Microsoft.OfficeLabs.Update.BGJobState@)">
+            <summary>
+            Retrieves the state of the job
+            </summary>
+            <param name="pVal">Current state of the job. For example, the state reflects whether the job is in error, transferring data, or suspended. For a list of job states, see the BG_JOB_STATE enumeration type. </param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyJob2.GetError(Microsoft.OfficeLabs.Update.IBackgroundCopyError@)">
+            <summary>
+            Retrieves an interface pointer to 
+            the error object after an error occurs
+            </summary>
+            <param name="ppError">Error interface that provides the error code, a description of the error, and the context in which the error occurred. This parameter also identifies the file being transferred at the time the error occurred. Release ppError when done. </param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyJob2.GetOwner(System.String@)">
+            <summary>
+            Retrieves the job owner's identity
+            </summary>
+            <param name="pVal">Null-terminated string that contains the string version of the SID that identifies the job's owner. Call the CoTaskMemFree function to free ppOwner when done. </param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyJob2.SetDisplayName(System.String)">
+            <summary>
+            Specifies a display name that identifies the job in 
+            a user interface
+            </summary>
+            <param name="Val">Null-terminated string that identifies the job. Must not be NULL. The length of the string is limited to 256 characters, not including the null terminator. </param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyJob2.GetDisplayName(System.String@)">
+            <summary>
+            Retrieves the display name that identifies the job
+            </summary>
+            <param name="pVal">Null-terminated string that contains the display name that identifies the job. More than one job can have the same display name. Call the CoTaskMemFree function to free ppDisplayName when done.</param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyJob2.SetDescription(System.String)">
+            <summary>
+            Specifies a description of the job
+            </summary>
+            <param name="Val">Null-terminated string that provides additional information about the job. The length of the string is limited to 1,024 characters, not including the null terminator.</param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyJob2.GetDescription(System.String@)">
+            <summary>
+            Retrieves the description of the job
+            </summary>
+            <param name="pVal">Null-terminated string that contains a short description of the job. Call the CoTaskMemFree function to free ppDescription when done. </param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyJob2.SetPriority(Microsoft.OfficeLabs.Update.BGJobPriority)">
+            <summary>
+            Specifies the priority of the job relative to 
+            other jobs in the transfer queue
+            </summary>
+            <param name="Val">Specifies the priority level of your job relative to other jobs in the transfer queue. The default is BG_JOB_PRIORITY_NORMAL. For a list of priority levels, see the BG_JOB_PRIORITY enumeration. </param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyJob2.GetPriority(Microsoft.OfficeLabs.Update.BGJobPriority@)">
+            <summary>
+            Retrieves the priority level you have set for the job.
+            </summary>
+            <param name="pVal">Priority of the job relative to other jobs in the transfer queue. </param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyJob2.SetNotifyFlags(Microsoft.OfficeLabs.Update.BGJobNotificationType)">
+            <summary>
+            Specifies the type of event notification to receive
+            </summary>
+            <param name="Val">Set one or more of the following flags to identify the events that you want to receive. </param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyJob2.GetNotifyFlags(System.UInt32@)">
+            <summary>
+            Retrieves the event notification (callback) flags 
+            you have set for your application.
+            </summary>
+            <param name="pVal">Identifies the events that your application receives. The following table lists the event notification flag values. </param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyJob2.SetNotifyInterface(System.Object)">
+            <summary>
+            Specifies a pointer to your implementation of the 
+            IBackgroundCopyCallback interface (callbacks). The 
+            interface receives notification based on the event 
+            notification flags you set
+            </summary>
+            <param name="Val">An IBackgroundCopyCallback interface pointer. To remove the current callback interface pointer, set this parameter to NULL.</param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyJob2.GetNotifyInterface(System.Object@)">
+            <summary>
+            Retrieves a pointer to your implementation 
+            of the IBackgroundCopyCallback interface (callbacks).
+            </summary>
+            <param name="pVal">Interface pointer to your implementation of the IBackgroundCopyCallback interface. When done, release ppNotifyInterface.</param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyJob2.SetMinimumRetryDelay(System.UInt32)">
+            <summary>
+            Specifies the minimum length of time that BITS waits after 
+            encountering a transient error condition before trying to 
+            transfer the file
+            </summary>
+            <param name="Seconds">Minimum length of time, in seconds, that BITS waits after encountering a transient error before trying to transfer the file. The default retry delay is 600 seconds (10 minutes). The minimum retry delay that you can specify is 60 seconds. If you specify a value less than 60 seconds, BITS changes the value to 60 seconds. If the value exceeds the no-progress-timeout value retrieved from the GetNoProgressTimeout method, BITS will not retry the transfer and moves the job to the BG_JOB_STATE_ERROR state. </param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyJob2.GetMinimumRetryDelay(System.UInt32@)">
+            <summary>
+            Retrieves the minimum length of time that BITS waits after 
+            encountering a transient error condition before trying to 
+            transfer the file
+            </summary>
+            <param name="Seconds">Length of time, in seconds, that the service waits after encountering a transient error before trying to transfer the file. </param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyJob2.SetNoProgressTimeout(System.UInt32)">
+            <summary>
+            Specifies the length of time that BITS continues to try to 
+            transfer the file after encountering a transient error 
+            condition
+            </summary>
+            <param name="Seconds">Length of time, in seconds, that BITS tries to transfer the file after the first transient error occurs. The default retry period is 1,209,600 seconds (14 days). Set the retry period to 0 to prevent retries and to force the job into the BG_JOB_STATE_ERROR state for all errors. If the retry period value exceeds the JobInactivityTimeout Group Policy value (90-day default), BITS cancels the job after the policy value is exceeded.</param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyJob2.GetNoProgressTimeout(System.UInt32@)">
+            <summary>
+            Retrieves the length of time that BITS continues to try to 
+            transfer the file after encountering a transient error condition
+            </summary>
+            <param name="Seconds">Length of time, in seconds, that the service tries to transfer the file after a transient error occurs. </param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyJob2.GetErrorCount(System.UInt32@)">
+            <summary>
+            Retrieves the number of times the job was interrupted by 
+            network failure or server unavailability
+            </summary>
+            <param name="Errors">Number of errors that occurred while BITS tried to transfer the job. The count increases when the job moves from the BG_JOB_STATE_TRANSFERRING state to the BG_JOB_STATE_TRANSIENT_ERROR or BG_JOB_STATE_ERROR state.</param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyJob2.SetProxySettings(Microsoft.OfficeLabs.Update.BGJobProxyUsage,System.String,System.String)">
+            <summary>
+            Specifies which proxy to use to transfer the files
+            </summary>
+            <param name="ProxyBypassList">Null-terminated string that contains an optional list of host names, IP addresses, or both, that can bypass the proxy. The list is space-delimited. For details on specifying a bypass proxy, see Remarks. This parameter must be NULL if the value of ProxyUsage is BG_JOB_PROXY_USAGE_PRECONFIG, BG_JOB_PROXY_USAGE_NO_PROXY, or BG_JOB_PROXY_USAGE_NO_AUTODETECT. The length of the proxy bypass list is limited to 4,000 characters, not including the null terminator. </param>
+            <param name="ProxyList">Null-terminated string that contains the proxies to use to transfer files. The list is space-delimited. For details on specifying a proxy, see Remarks. This parameter must be NULL if the value of ProxyUsage is BG_JOB_PROXY_USAGE_PRECONFIG, BG_JOB_PROXY_USAGE_NO_PROXY, or BG_JOB_PROXY_USAGE_NO_AUTODETECT. The length of the proxy list is limited to 4,000 characters, not including the null terminator. </param>
+            <param name="ProxyUsage">Specifies whether to use the user's proxy settings, not to use a proxy, or to use application-specified proxy settings. The default is to use the user's proxy settings, BG_JOB_PROXY_USAGE_PRECONFIG. For a list of proxy options, see the BG_JOB_PROXY_USAGE enumeration.</param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyJob2.GetProxySettings(Microsoft.OfficeLabs.Update.BGJobProxyUsage@,System.String@,System.String@)">
+            <summary>
+            Retrieves the proxy settings the job uses to transfer the files
+            </summary>
+            <param name="pProxyBypassList">Null-terminated string that contains an optional list of host names or IP addresses, or both, that were not routed through the proxy. The list is space-delimited. For details on the format of the string, see the Listing the Proxy Bypass section of Enabling Internet Functionality. Call the CoTaskMemFree function to free ppProxyBypassList when done.</param>
+            <param name="pProxyList">Null-terminated string that contains one or more proxies to use to transfer files. The list is space-delimited. For details on the format of the string, see the Listing Proxy Servers section of Enabling Internet Functionality. Call the CoTaskMemFree function to free ppProxyList when done.</param>
+            <param name="pProxyUsage">Specifies the proxy settings the job uses to transfer the files. For a list of proxy options, see the BG_JOB_PROXY_USAGE enumeration. </param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyJob2.TakeOwnership">
+            <summary>
+            Changes the ownership of the job to the current user
+            </summary>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyJob2.SetNotifyCmdLine(System.String,System.String)">
+            <summary>
+            Use the SetNotifyCmdLine method to specify a program to execute if the job enters the BG_JOB_STATE_ERROR or BG_JOB_STATE_TRANSFERRED state. BITS executes the program in the context of the user.
+            </summary>
+            <param name="Program">Null-terminated string that contains the program to execute. The pProgram parameter is limited to MAX_PATH characters, not including the null terminator. You should specify a full path to the program; the method will not use the search path to locate the program. To remove command line notification, set pProgram and pParameters to NULL. The method fails if pProgram is NULL and pParameters is non-NULL. </param>
+            <param name="Parameters">Null-terminated string that contains the parameters of the program in pProgram. The first parameter must be the program in pProgram (use quotes if the path uses long file names). The pParameters parameter is limited to 4,000 characters, not including the null terminator. This parameter can be NULL.</param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyJob2.GetNotifyCmdLine(System.String@,System.String@)">
+            <summary>
+            Use the GetNotifyCmdLine method to retrieve the program to execute when the job enters the error or transferred state.
+            </summary>
+            <param name="pProgram">Null-terminated string that contains the program to execute when the job enters the error or transferred state. Call the CoTaskMemFree function to free pProgram when done. </param>
+            <param name="pParameters">Null-terminated string that contains the arguments of the program in pProgram. Call the CoTaskMemFree function to free pParameters when done. </param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyJob2.GetReplyProgress(Microsoft.OfficeLabs.Update.BGJobReplyProgress@)">
+            <summary>
+            Use the GetReplyProgress method to retrieve progress information related to the transfer of the reply data from an upload-reply job.
+            </summary>
+            <param name="pProgress">Contains information that you use to calculate the percentage of the reply file transfer that is complete. For more information, see BG_JOB_REPLY_PROGRESS.</param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyJob2.GetReplyData(System.IntPtr,System.UInt64@)">
+            <summary>
+            Use the GetReplyData method to retrieve an in-memory copy of the reply data from the server application. Only call this method if the job's type is BG_JOB_TYPE_UPLOAD_REPLY and its state is BG_JOB_STATE_TRANSFERRED.
+            </summary>
+            <param name="ppBuffer">Buffer to contain the reply data. The method sets ppBuffer to NULL if the server application did not return a reply. Call the CoTaskMemFree function to free ppBuffer when done.</param>
+            <param name="pLength">Size, in bytes, of the reply data in ppBuffer.</param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyJob2.SetReplyFileName(System.String)">
+            <summary>
+            Use the SetReplyFileName method to specify the name of the file to contain the reply data from the server application. Only call this method if the job's type is BG_JOB_TYPE_UPLOAD_REPLY.
+            </summary>
+            <param name="ReplyFileName">Null-terminated string that contains the full path to the reply file. BITS generates the file name if ReplyFileNamePathSpec is NULL or an empty string. You cannot use wildcards in the path or file name, and directories in the path must exist. The path is limited to MAX_PATH, not including the null terminator. The user must have permissions to write to the directory. BITS does not support NTFS streams. Instead of using network drives, which are session specific, use UNC paths (for example, \\server\share\path\file). Do not include the \\? prefix in the path. </param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyJob2.GetReplyFileName(System.String@)">
+            <summary>
+            Use the GetReplyFileName method to retrieve the name of the file that contains the reply data from the server application. Only call this method if the job type is BG_JOB_TYPE_UPLOAD_REPLY.
+            </summary>
+            <param name="pReplyFileName">Null-terminated string that contains the full path to the reply file. Call the CoTaskMemFree function to free pReplyFileName when done. </param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyJob2.SetCredentials(Microsoft.OfficeLabs.Update.BGAuthCredentials@)">
+            <summary>
+            Use the SetCredentials method to specify the credentials to use for a proxy or remote server user authentication request.
+            </summary>
+            <param name="Credentials">Identifies the target (proxy or server), authentication scheme, and the user's credentials to use for user authentication. For details, see the BG_AUTH_CREDENTIALS structure. If the job currently contains credentials with the same target and scheme pair, the existing credentials are replaced with the new credentials. The credentials persist for the life of the job. To remove the credentials from the job, call the IBackgroundCopyJob2::RemoveCredentials method. </param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyJob2.RemoveCredentials(Microsoft.OfficeLabs.Update.BGAuthTarget,Microsoft.OfficeLabs.Update.BGAuthScheme)">
+            <summary>
+            Use the RemoveCredentials method to remove credentials from use. The credentials must match an existing target and scheme pair that you specified using the IBackgroundCopyJob2::SetCredentials method. There is no method to retrieve the credentials you have set.
+            </summary>
+            <param name="Target">Identifies whether to use the credentials for proxy or server authentication.</param>
+            <param name="Scheme">Identifies the authentication scheme to use (basic or one of several challenge-response schemes). For details, see the BG_AUTH_SCHEME enumeration. </param>
+        </member>
+        <member name="T:Microsoft.OfficeLabs.Update.IBackgroundCopyError">
+            <summary>
+            Use the information in the IBackgroundCopyError interface to 
+            determine the cause of the error and if the transfer process 
+            can proceed
+            </summary>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyError.GetError(Microsoft.OfficeLabs.Update.BGErrorContext@,System.Int32@)">
+            <summary>
+            Retrieves the error code and identify the context 
+            in which the error occurred
+            </summary>
+            <param name="pContext">Context in which the error occurred. For a list of context values, see the BG_ERROR_CONTEXT enumeration. </param>
+            <param name="pCode">Error code of the error that occurred. </param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyError.GetFile(Microsoft.OfficeLabs.Update.IBackgroundCopyFile@)">
+            <summary>
+            Retrieves an interface pointer to the file object 
+            associated with the error
+            </summary>
+            <param name="pVal"> An IBackgroundCopyFile interface pointer whose methods you use to determine the local and remote file names associated with the error. The ppFile parameter is set to NULL if the error is not associated with the local or remote file. When done, release ppFile.</param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyError.GetErrorDescription(System.UInt32,System.String@)">
+            <summary>
+            Retrieves the error text associated with the error
+            </summary>
+            <param name="LanguageId">Identifies the locale to use to generate the description. To create the language identifier, use the MAKELANGID macro.</param>
+            <param name="pErrorDescription">Null-terminated string that contains the error text associated with the error. Call the CoTaskMemFree function to free ppErrorDescription when done.</param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyError.GetErrorContextDescription(System.UInt32,System.String@)">
+            <summary>
+            Retrieves a description of the context in which the error occurred
+            </summary>
+            <param name="LanguageId">Identifies the locale to use to generate the description. To create the language identifier, use the MAKELANGID macro.</param>
+            <param name="pContextDescription">Null-terminated string that contains the description of the context in which the error occurred. Call the CoTaskMemFree function to free ppContextDescription when done. </param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyError.GetProtocol(System.String@)">
+            <summary>
+            Retrieves the protocol used to transfer the file
+            </summary>
+            <param name="pProtocol">Null-terminated string that contains the protocol used to transfer the file. The string contains http for the HTTP protocol and file for the SMB protocol. The ppProtocol parameter is set to NULL if the error is not related to the transfer protocol. Call the CoTaskMemFree function to free ppProtocol when done. </param>
+        </member>
+        <member name="T:Microsoft.OfficeLabs.Update.IEnumBackgroundCopyJobs">
+            <summary>
+            Use the IEnumBackgroundCopyJobs interface to enumerate the list 
+            of jobs in the transfer queue. To get an IEnumBackgroundCopyJobs 
+            interface pointer, call the IBackgroundCopyManager::EnumJobs method
+            </summary>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IEnumBackgroundCopyJobs.Next(System.UInt32,Microsoft.OfficeLabs.Update.IBackgroundCopyJob@,System.UInt32@)">
+            <summary>
+            Retrieves a specified number of items in the enumeration sequence
+            </summary>
+            <param name="celt">Number of elements requested. </param>
+            <param name="rgelt">Array of IBackgroundCopyJob objects. You must release each object in rgelt when done. </param>
+            <param name="pceltFetched">Number of elements returned in rgelt. You can set pceltFetched to NULL if celt is one. Otherwise, initialize the value of pceltFetched to 0 before calling this method.</param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IEnumBackgroundCopyJobs.Skip(System.UInt32)">
+            <summary>
+            Skips a specified number of items in the enumeration sequence
+            </summary>
+            <param name="celt">Number of elements to skip. </param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IEnumBackgroundCopyJobs.Reset">
+            <summary>
+            Resets the enumeration sequence to the beginning.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IEnumBackgroundCopyJobs.Clone(Microsoft.OfficeLabs.Update.IEnumBackgroundCopyJobs@)">
+            <summary>
+            Creates another enumerator that contains the same 
+            enumeration state as the current one
+            </summary>
+            <param name="ppenum">Receives the interface pointer to the enumeration object. If the method is unsuccessful, the value of this output variable is undefined. You must release ppEnumJobs when done.</param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IEnumBackgroundCopyJobs.GetCount(System.UInt32@)">
+            <summary>
+            Returns the number of items in the enumeration
+            </summary>
+            <param name="puCount">Number of jobs in the enumeration.</param>
+        </member>
+        <member name="T:Microsoft.OfficeLabs.Update.IEnumBackgroundCopyFiles">
+            <summary>
+            Use the IEnumBackgroundCopyFiles interface to enumerate the files 
+            that a job contains. To get an IEnumBackgroundCopyFiles interface 
+            pointer, call the IBackgroundCopyJob::EnumFiles method
+            </summary>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IEnumBackgroundCopyFiles.Next(System.UInt32,Microsoft.OfficeLabs.Update.IBackgroundCopyFile@,System.UInt32@)">
+            <summary>
+            Retrieves a specified number of items in the enumeration sequence
+            </summary>
+            <param name="celt">Number of elements requested. </param>
+            <param name="rgelt">Array of IBackgroundCopyFile objects. You must release each object in rgelt when done.</param>
+            <param name="pceltFetched">Number of elements returned in rgelt. You can set pceltFetched to NULL if celt is one. Otherwise, initialize the value of pceltFetched to 0 before calling this method. </param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IEnumBackgroundCopyFiles.Skip(System.UInt32)">
+            <summary>
+            Skips a specified number of items in the enumeration sequence
+            </summary>
+            <param name="celt">Number of elements to skip.</param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IEnumBackgroundCopyFiles.Reset">
+            <summary>
+            Resets the enumeration sequence to the beginning
+            </summary>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IEnumBackgroundCopyFiles.Clone(Microsoft.OfficeLabs.Update.IEnumBackgroundCopyFiles@)">
+            <summary>
+            Creates another enumerator that contains the same 
+            enumeration state as the current enumerator
+            </summary>
+            <param name="ppenum">Receives the interface pointer to the enumeration object. If the method is unsuccessful, the value of this output variable is undefined. You must release ppEnumFiles when done.</param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IEnumBackgroundCopyFiles.GetCount(System.UInt32@)">
+            <summary>
+            Retrieves the number of items in the enumeration
+            </summary>
+            <param name="puCount">Number of files in the enumeration.</param>
+        </member>
+        <member name="T:Microsoft.OfficeLabs.Update.IBackgroundCopyFile">
+            <summary>
+             The IBackgroundCopyFile interface contains information about a file 
+             that is part of a job. For example, you can use the interfaces methods
+             to retrieve the local and remote names of the file and transfer progress
+             information
+            </summary>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyFile.GetRemoteName(System.String@)">
+            <summary>
+            Retrieves the remote name of the file
+            </summary>
+            <param name="pVal">Null-terminated string that contains the remote name of the file to transfer. The name is fully qualified. Call the CoTaskMemFree function to free ppName when done. </param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyFile.GetLocalName(System.String@)">
+            <summary>
+            Retrieves the local name of the file
+            </summary>
+            <param name="pVal">Null-terminated string that contains the name of the file on the client. The name is fully qualified. Call the CoTaskMemFree function to free ppName when done. </param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.IBackgroundCopyFile.GetProgress(Microsoft.OfficeLabs.Update.BGFileProgress@)">
+            <summary>
+            Retrieves the progress of the file transfer
+            </summary>
+            <param name="pVal">Structure whose members indicate the progress of the file transfer. For details on the type of progress information available, see the BG_FILE_PROGRESS structure.</param>
+        </member>
+        <member name="T:Microsoft.OfficeLabs.Update.BGAuthScheme">
+            <summary>
+            Authentication scheme used for the background job
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.BGAuthScheme.Basic">
+            <summary>
+            Basic is a scheme in which the user name and password are sent in clear-text to the server or proxy. 
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.BGAuthScheme.Digest">
+            <summary>
+            Digest is a challenge-response scheme that uses a server-specified data string for the challenge.
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.BGAuthScheme.Ntlm">
+            <summary>
+            Windows NT LAN Manager (NTLM) is a challenge-response scheme that uses the credentials of the user for authentication in a Windows network environment.
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.BGAuthScheme.Negotiate">
+            <summary>
+            Simple and Protected Negotiation protocol (Snego) is a challenge-response scheme that negotiates with the server or proxy to determine which scheme to use for authentication. Examples are the Kerberos protocol, Secure Socket Layer (SSL), and NTLM. 
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.BGAuthScheme.Passport">
+            <summary>
+            Passport is a centralized authentication service provided by Microsoft that offers a single logon for member sites.
+            </summary>
+        </member>
+        <member name="T:Microsoft.OfficeLabs.Update.BGAuthTarget">
+            <summary>
+            The location from which to download the code.
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.BGAuthTarget.Server">
+            <summary>
+            Use credentials for server requests. 
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.BGAuthTarget.Proxy">
+            <summary>
+            Use credentials for proxy requests. 
+            </summary>
+        </member>
+        <member name="T:Microsoft.OfficeLabs.Update.BGJobState">
+            <summary>
+            The BG_JOB_STATE enumeration type defines constant values for the 
+            different states of a job
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.BGJobState.Queued">
+            <summary>
+            Specifies that the job is in the queue and waiting to run. 
+            If a user logs off while their job is transferring, the job 
+            transitions to the queued state
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.BGJobState.Connecting">
+            <summary>
+            Specifies that BITS is trying to connect to the server. If the 
+            connection succeeds, the state of the job becomes 
+            BG_JOB_STATE_TRANSFERRING; otherwise, the state becomes 
+            BG_JOB_STATE_TRANSIENT_ERROR
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.BGJobState.Transferring">
+            <summary>
+            Specifies that BITS is transferring data for the job
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.BGJobState.Suspended">
+            <summary>
+            Specifies that the job is suspended (paused)
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.BGJobState.Error">
+            <summary>
+            Specifies that a non-recoverable error occurred (the service is 
+            unable to transfer the file). When the error can be corrected, 
+            such as an access-denied error, call the IBackgroundCopyJob::Resume 
+            method after the error is fixed. However, if the error cannot be 
+            corrected, call the IBackgroundCopyJob::Cancel method to cancel 
+            the job, or call the IBackgroundCopyJob::Complete method to accept 
+            the portion of a download job that transferred successfully.
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.BGJobState.TransientError">
+            <summary>
+            Specifies that a recoverable error occurred. The service tries to 
+            recover from the transient error until the retry time value that 
+            you specify using the IBackgroundCopyJob::SetNoProgressTimeout method 
+            expires. If the retry time expires, the job state changes to 
+            BG_JOB_STATE_ERROR
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.BGJobState.Transferred">
+            <summary>
+            Specifies that your job was successfully processed
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.BGJobState.Acknowledged">
+            <summary>
+            Specifies that you called the IBackgroundCopyJob::Complete method 
+            to acknowledge that your job completed successfully
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.BGJobState.Cancelled">
+            <summary>
+            Specifies that you called the IBackgroundCopyJob::Cancel method to 
+            cancel the job (remove the job from the transfer queue)
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.BGJobState.UpdateAvailable">
+            <summary>
+            This is custom state not provided by BITS to indicate that an Update
+            is available for the application.
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.BGJobState.ValidationSuccess">
+            <summary>
+            This is custom state not provided by BITS to indicate that an validation
+            of the application files was successful.
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.BGJobState.ValidationFailed">
+            <summary>
+            This is custom state not provided by BITS to indicate that an validation
+            of the application files was failed.
+            </summary>
+        </member>
+        <member name="T:Microsoft.OfficeLabs.Update.BGJobType">
+            <summary>
+            The BG_JOB_TYPE enumeration type defines constant values that you 
+            use to specify the type of transfer job, such as download
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.BGJobType.Download">
+            <summary>
+            Specifies that the job downloads files to the client
+            </summary>
+        </member>
+        <member name="T:Microsoft.OfficeLabs.Update.BGJobNotificationType">
+            <summary>
+            Used for the SetNotifyFlags method.
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.BGJobNotificationType.Transferred">
+            <summary>
+            All of the files in the job have been transferred.
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.BGJobNotificationType.Error">
+            <summary>
+            An error has occurred.
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.BGJobNotificationType.Disable">
+            <summary>
+            Event notification is disabled. BITS ignores the other flags.
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.BGJobNotificationType.Modification">
+            <summary>
+            The job has been modified. For example, a property value changed, the state of the job changed, or progress is made transferring the files. This flag is ignored if command line notification is specified.
+            </summary>
+        </member>
+        <member name="T:Microsoft.OfficeLabs.Update.BGJobProxyUsage">
+            <summary>
+            The BG_JOB_PROXY_USAGE enumeration type defines constant values 
+            that you use to specify which proxy to use for file transfers
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.BGJobProxyUsage.PreConfig">
+            <summary>
+            Use the proxy and proxy bypass list settings defined by each 
+            user to transfer files
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.BGJobProxyUsage.NoProxy">
+            <summary>
+            Do not use a proxy to transfer files
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.BGJobProxyUsage.Override">
+            <summary>
+            Use the application's proxy and proxy bypass list to transfer files
+            </summary>
+        </member>
+        <member name="T:Microsoft.OfficeLabs.Update.BGJobPriority">
+            <summary>
+            The BG_JOB_PRIORITY enumeration type defines the constant values 
+            that you use to specify the priority level of the job
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.BGJobPriority.Foreground">
+            <summary>
+            Transfers the job in the foreground
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.BGJobPriority.High">
+            <summary>
+            Transfers the job in the background. This is the highest background 
+            priority level. 
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.BGJobPriority.Normal">
+            <summary>
+            Transfers the job in the background. This is the default priority 
+            level for a job
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.BGJobPriority.Low">
+            <summary>
+            Transfers the job in the background. This is the lowest background 
+            priority level
+            </summary>
+        </member>
+        <member name="T:Microsoft.OfficeLabs.Update.BGAuthCredentials">
+            <summary>
+            The BG_AUTH_CREDENTIALS structure identifies the target (proxy or server), authentication scheme, and the user's credentials to use for user authentication requests. The structure is passed to the IBackgroundCopyJob2::SetCredentials method.
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.BGAuthCredentials.Target">
+            <summary>
+            Identifies whether to use the credentials for a proxy or server authentication request. For a list of values, see the BG_AUTH_TARGET enumeration.
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.BGAuthCredentials.Scheme">
+            <summary>
+            Identifies the scheme to use for authentication (for example, Basic or NTLM). For a list of values, see the BG_AUTH_SCHEME enumeration. 
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.BGAuthCredentials.Credentials">
+            <summary>
+            Identifies the credentials to use for the specified authentication scheme. For details, see the BG_AUTH_CREDENTIALS_UNION union.
+            </summary>
+        </member>
+        <member name="T:Microsoft.OfficeLabs.Update.BGAuthCredentialsUnion">
+            <summary>
+            The BG_AUTH_CREDENTIALS_UNION union identifies the credentials to use for the authentication scheme specified in the BG_AUTH_CREDENTIALS structure.
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.BGAuthCredentialsUnion.Basic">
+            <summary>
+            Identifies the user name and password of the user to authenticate. For details, see the BG_BASIC_CREDENTIALS structure.
+            </summary>
+        </member>
+        <member name="T:Microsoft.OfficeLabs.Update.BGBasicCredentials">
+            <summary>
+            The BG_BASIC_CREDENTIALS structure identifies the user name and password to authenticate.
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.BGBasicCredentials.UserName">
+            <summary>
+            Null-terminated string that contains the user name to authenticate. The user name is limited to 300 characters, not including the null terminator. The format of the user name depends on the authentication scheme requested. For example, for Basic, NTLM, and Negotiate authentication, the user name is of the form "domain\user name" or "user name". For Passport authentication, the user name is an e-mail address. If NULL, default credentials for this session context are used. 
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.BGBasicCredentials.Password">
+            <summary>
+            Null-terminated string that contains the password in clear-text. The password is limited to 300 characters, not including the null terminator. The password can be blank. Set to NULL if UserName is NULL. BITS encrypts the password before persisting the job if a network disconnect occurs or the user logs off. 
+            </summary>
+        </member>
+        <member name="T:Microsoft.OfficeLabs.Update.BGErrorContext">
+            <summary>
+            The BG_ERROR_CONTEXT enumeration type defines the constant values 
+            that specify the context in which the error occurred
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.BGErrorContext.None">
+            <summary>
+            An error has not occurred
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.BGErrorContext.Unknown">
+            <summary>
+            The error context is unknown
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.BGErrorContext.GeneralQueueManager">
+            <summary>
+            The transfer queue manager generated the error
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.BGErrorContext.QueueManagerNotification">
+            <summary>
+            The error was generated while the queue manager was 
+            notifying the client of an event
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.BGErrorContext.LocalFile">
+            <summary>
+            The error was related to the specified local file. For example, 
+            permission was denied or the volume was unavailable
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.BGErrorContext.RemoteFile">
+            <summary>
+            The error was related to the specified remote file. 
+            For example, the URL is not accessible
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.BGErrorContext.GeneralTransport">
+            <summary>
+            The transport layer generated the error. These errors are general 
+            transport failures; errors not specific to the remote file
+            </summary>
+        </member>
+        <member name="T:Microsoft.OfficeLabs.Update.BGFileInfo">
+            <summary>
+            The BG_FILE_INFO structure provides the local and 
+            remote names of the file to transfer
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.BGFileInfo.RemoteName">
+            <summary>
+            Remote Name for the File
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.BGFileInfo.LocalName">
+            <summary>
+            Local Name for the file
+            </summary>
+        </member>
+        <member name="T:Microsoft.OfficeLabs.Update.BGJobProgress">
+            <summary>
+            The BG_JOB_PROGRESS structure provides job-related progress information, 
+            such as the number of bytes and files transferred
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.BGJobProgress.BytesTotal">
+            <summary>
+            Total number of bytes to transfer for the job.
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.BGJobProgress.BytesTransferred">
+            <summary>
+            Number of bytes transferred
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.BGJobProgress.FilesTotal">
+            <summary>
+            Total number of files to transfer for this job
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.BGJobProgress.FilesTransferred">
+            <summary>
+            Number of files transferred. 
+            </summary>
+        </member>
+        <member name="T:Microsoft.OfficeLabs.Update.BGJobReplyProgress">
+            <summary>
+            The BG_JOB_REPLY_PROGRESS structure provides progress information related to the reply portion of an upload-reply job.
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.BGJobReplyProgress.BytesTotal">
+            <summary>
+            Size of the file in bytes. The value is BG_SIZE_UNKNOWN if the reply has not begun. 
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.BGJobReplyProgress.BytesTransferred">
+            <summary>
+            Number of bytes transferred. 
+            </summary>
+        </member>
+        <member name="T:Microsoft.OfficeLabs.Update.BGJobTimes">
+            <summary>
+            The BG_JOB_TIMES structure provides job-related timestamps
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.BGJobTimes.CreationTime">
+            <summary>
+            Time the job was created
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.BGJobTimes.ModificationTime">
+            <summary>
+            Time the job was last modified or bytes were transferred
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.BGJobTimes.TransferCompletionTime">
+            <summary>
+            Time the job entered the BG_JOB_STATE_TRANSFERRED state
+            </summary>
+        </member>
+        <member name="T:Microsoft.OfficeLabs.Update.BGFileProgress">
+            <summary>
+            The BG_FILE_PROGRESS structure provides file-related progress information, 
+            such as the number of bytes transferred
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.BGFileProgress.BytesTotal">
+            <summary>
+            Size of the file in bytes
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.BGFileProgress.BytesTransferred">
+            <summary>
+            Number of bytes transferred. 
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.BGFileProgress.Completed">
+            <summary>
+            For downloads, the value is TRUE if the file is available to the user; 
+            otherwise, the value is FALSE
+            </summary>
+        </member>
+        <member name="T:Microsoft.OfficeLabs.Update.CallingAssemblyManifestProvider">
+            <summary>
+                Implements an <see cref="T:Microsoft.OfficeLabs.Update.IManifestProvider"/> that returns a 
+                <see cref="P:Microsoft.OfficeLabs.Update.CallingAssemblyManifestProvider.Manifest"/> based on the calling assembly.
+            </summary>
+            <remarks>
+              <para>
+                The <see cref="P:Microsoft.OfficeLabs.Update.CallingAssemblyManifestProvider.Manifest"/> is created by walking up the callstack
+                looking for an assembly which has an <see cref="T:Microsoft.OfficeLabs.Update.AssemblyProductCodeAttribute"/>
+                and a <see cref="T:System.Reflection.AssemblyVersionAttribute"/>.
+              </para>
+              <para>
+                Name is picked up from <see cref="T:System.Reflection.AssemblyProductAttribute"/> or
+                <see cref="T:System.Reflection.AssemblyTitleAttribute"/>.
+              </para>
+            </remarks>
+        </member>
+        <member name="P:Microsoft.OfficeLabs.Update.CallingAssemblyManifestProvider.Manifest">
+            <summary>
+                Gets the manifest of the calling assembly.
+            </summary>
+            <value>
+                A <see cref="P:Microsoft.OfficeLabs.Update.CallingAssemblyManifestProvider.Manifest"/> derived from the calling assembly attributes.
+            </value>
+        </member>
+        <member name="T:Microsoft.OfficeLabs.Update.CheckForUpdateCompletedEventArgs">
+            <summary>
+               Provides data for <see cref="E:Microsoft.OfficeLabs.Update.Updater.CheckForUpdateCompleted"/> event.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.CheckForUpdateCompletedEventArgs.#ctor(Microsoft.OfficeLabs.Update.Manifest,Microsoft.OfficeLabs.Update.Manifest)">
+            <summary>
+                Initializes a new instance of <see cref="T:Microsoft.OfficeLabs.Update.CheckForUpdateCompletedEventArgs"/> class.
+            </summary>
+            <param name="currentManifest">Manifest describing current version.</param>
+            <param name="updateManifest">Manifest describing available update.</param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.CheckForUpdateCompletedEventArgs.#ctor(Microsoft.OfficeLabs.Update.Manifest,Microsoft.OfficeLabs.Update.Manifest,System.Exception,System.Boolean,System.Object)">
+            <summary>
+                Initializes a new instance of <see cref="T:Microsoft.OfficeLabs.Update.CheckForUpdateCompletedEventArgs"/> class.
+            </summary>
+            <param name="currentManifest">Manifest describing current version.</param>
+            <param name="updateManifest">Manifest describing available update.</param>
+            <param name="error">Last error encountered while checking update availability.</param>
+            <param name="canceled">Indicates if check for update was canceled manually.</param>
+            <param name="userState">Not used.</param>
+        </member>
+        <member name="P:Microsoft.OfficeLabs.Update.CheckForUpdateCompletedEventArgs.CurrentManifest">
+            <summary>
+                Gets the current manifest.
+            </summary>
+            <remarks>
+                May be a minimal <see cref="T:Microsoft.OfficeLabs.Update.Manifest"/> with just ProductCode and Version.
+            </remarks>
+        </member>
+        <member name="P:Microsoft.OfficeLabs.Update.CheckForUpdateCompletedEventArgs.UpdateManifest">
+            <summary>
+                Gets the currently available update manifest.
+            </summary>
+        </member>
+        <member name="P:Microsoft.OfficeLabs.Update.CheckForUpdateCompletedEventArgs.IsUpdateAvailable">
+            <summary>
+                Gets availability of an update based on version numbers of the
+                <see cref="P:Microsoft.OfficeLabs.Update.CheckForUpdateCompletedEventArgs.CurrentManifest"/> and the <see cref="P:Microsoft.OfficeLabs.Update.CheckForUpdateCompletedEventArgs.UpdateManifest"/>.
+            </summary>
+        </member>
+        <member name="T:Microsoft.OfficeLabs.Update.CompositeManifestProvider">
+            <summary>
+                Implements an <see cref="T:Microsoft.OfficeLabs.Update.IManifestProvider"/> which iterates over
+                collection of providers until one succeeds.
+            </summary>
+            <remarks>
+                This class is intended to allow chaining of providers so that 
+                multiple places can be checked for a manifest. For example,
+                looking at the calling assembly, and if that fails look in the
+                running application directory.
+            </remarks>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.CompositeManifestProvider.#ctor">
+            <summary>
+                Initializes a new instance of the <see cref="T:Microsoft.OfficeLabs.Update.CompositeManifestProvider"/> class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.OfficeLabs.Update.CompositeManifestProvider.Providers">
+            <summary>
+                Gets a collection of <see cref="T:Microsoft.OfficeLabs.Update.IManifestProvider"/>.
+            </summary>
+        </member>
+        <member name="P:Microsoft.OfficeLabs.Update.CompositeManifestProvider.Manifest">
+            <summary>
+                Gets the <see cref="P:Microsoft.OfficeLabs.Update.CompositeManifestProvider.Manifest"/> of the first <see cref="T:Microsoft.OfficeLabs.Update.IManifestProvider"/>
+                that succeeds.
+            </summary>
+        </member>
+        <member name="T:Microsoft.OfficeLabs.Update.DownloadCompletedEventArgs">
+            <summary>
+               Provides data for <see cref="E:Microsoft.OfficeLabs.Update.IDownloader.DownloadCompleted"/> event.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.DownloadCompletedEventArgs.#ctor(Microsoft.OfficeLabs.Update.IDownloader)">
+            <summary>
+                Initializes a new instance of the <see cref="T:Microsoft.OfficeLabs.Update.DownloadCompletedEventArgs"/>.
+            </summary>
+            <param name="downloader">IDownloader that just completed.</param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.DownloadCompletedEventArgs.#ctor(Microsoft.OfficeLabs.Update.IDownloader,System.Exception,System.Boolean,System.Object)">
+            <summary>
+                Initializes a new instance of the <see cref="T:Microsoft.OfficeLabs.Update.DownloadCompletedEventArgs"/>.
+            </summary>
+            <param name="downloader">IDownloaded that just completed.</param>
+            <param name="error">Last exception in case of a failed download.</param>
+            <param name="canceled">Indicates that the download was canceled.</param>
+            <param name="userState">Not used.</param>
+        </member>
+        <member name="P:Microsoft.OfficeLabs.Update.DownloadCompletedEventArgs.Downloader">
+            <summary>
+                Gets the IDownloader that just completed downloading.
+            </summary>
+        </member>
+        <member name="T:Microsoft.OfficeLabs.Update.DownloadUpdateCompletedEventArgs">
+            <summary>
+               Provides data for <see cref="E:Microsoft.OfficeLabs.Update.Updater.DownloadUpdateCompleted"/> event.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.DownloadUpdateCompletedEventArgs.#ctor(Microsoft.OfficeLabs.Update.Manifest,System.String)">
+            <summary>
+                Initializes a new instance of the <see cref="T:Microsoft.OfficeLabs.Update.DownloadUpdateCompletedEventArgs"/> class.
+            </summary>
+            <param name="updateManifest">Manifest describing the download.</param>
+            <param name="tempPath">Directory where the files were downloaded to.</param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.DownloadUpdateCompletedEventArgs.#ctor(Microsoft.OfficeLabs.Update.Manifest,System.String,System.Exception,System.Boolean,System.Object)">
+            <summary>
+                Initializes a new instance of the <see cref="T:Microsoft.OfficeLabs.Update.DownloadUpdateCompletedEventArgs"/> class.
+            </summary>
+            <param name="updateManifest">Manifest describing the download.</param>
+            <param name="tempPath">Path where the files were downloaded to.</param>
+            <param name="error">Last encountered in case of a failed download.</param>
+            <param name="canceled">Indicates if the download was manually cancelled.</param>
+            <param name="userState">Not used.</param>
+        </member>
+        <member name="P:Microsoft.OfficeLabs.Update.DownloadUpdateCompletedEventArgs.UpdateManifest">
+            <summary>
+                Gets the <see cref="T:Microsoft.OfficeLabs.Update.Manifest"/> that describes the files downloaded.
+            </summary>
+        </member>
+        <member name="P:Microsoft.OfficeLabs.Update.DownloadUpdateCompletedEventArgs.TempPath">
+            <summary>
+                Gets the path where the files were downloaded to.
+            </summary>
+        </member>
+        <member name="T:Microsoft.OfficeLabs.Update.FileCollection">
+            <summary>
+            A collection of FileDetails that defaults listing strings.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.FileCollection.Add(System.String)">
+            <summary>
+                Adds a filename to the collection
+            </summary>
+            <param name="item">filename</param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.FileCollection.Clear">
+            <summary>
+                Clears the collection
+            </summary>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.FileCollection.Contains(System.String)">
+            <summary>
+                Finds a filename in the collection.
+            </summary>
+            <param name="item">filename</param>
+            <returns>True if a filename can be found in the collection.</returns>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.FileCollection.CopyTo(System.String[],System.Int32)">
+            <summary>
+                Copies filenames in the collceiton into an array.
+            </summary>
+            <param name="array">target array</param>
+            <param name="arrayIndex">starting index to copy to</param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.FileCollection.Remove(System.String)">
+            <summary>
+                Removes a filename from the collection
+            </summary>
+            <param name="item">filename</param>
+            <returns>True if filename was removed.</returns>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.FileCollection.Add(Microsoft.OfficeLabs.Update.FileDetails)">
+            <summary>
+                Adds a file detail to the collection
+            </summary>
+            <param name="item">file detail</param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.FileCollection.Contains(Microsoft.OfficeLabs.Update.FileDetails)">
+            <summary>
+                Determines if a file detail is in the collection
+            </summary>
+            <param name="item">file detail</param>
+            <returns>true</returns>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.FileCollection.CopyTo(Microsoft.OfficeLabs.Update.FileDetails[],System.Int32)">
+            <summary>
+                Copies file details in the collection into an array.
+            </summary>
+            <param name="array">target array</param>
+            <param name="arrayIndex">starting index in the target array</param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.FileCollection.Remove(Microsoft.OfficeLabs.Update.FileDetails)">
+            <summary>
+                Removes a file detail from the collection
+            </summary>
+            <param name="item">file detail</param>
+            <returns>true if the file detail was removed.</returns>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.FileCollection.GetEnumerator">
+            <summary>
+                Get the default enumerator for this collection which is
+                array of filenames
+            </summary>
+            <returns>IEnumerator of filenames</returns>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.FileCollection.GetSchema">
+            <summary>
+            Returns the schema for serialization.
+            </summary>
+            <returns>schema for serialization</returns>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.FileCollection.ReadXml(System.Xml.XmlReader)">
+            <summary>
+            Deserialialize this object from XML.
+            </summary>
+            <param name="reader"></param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.FileCollection.WriteXml(System.Xml.XmlWriter)">
+            <summary>
+            Serialize this object to XML.
+            </summary>
+            <param name="writer"></param>
+        </member>
+        <member name="P:Microsoft.OfficeLabs.Update.FileCollection.Count">
+            <summary>
+                Gets the count of items in this collection
+            </summary>
+        </member>
+        <member name="P:Microsoft.OfficeLabs.Update.FileCollection.IsReadOnly">
+            <summary>
+                Indicate whether this collection is readonly.
+            </summary>
+        </member>
+        <member name="T:Microsoft.OfficeLabs.Update.FileDetails">
+            <summary>
+                Structure holding download details about a file.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.FileDetails.#ctor(System.String)">
+            <summary>
+                Initialize this object with a specified name.
+            </summary>
+            <param name="name">File name</param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.FileDetails.#ctor(System.String,System.String,System.Byte[])">
+            <summary>
+                Initialize this object with a filename, hash algorithm, and hash value.
+            </summary>
+            <param name="name">File name</param>
+            <param name="hashAlgorithm">Hash algorithm</param>
+            <param name="hashValue">Hash value</param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.FileDetails.#ctor(System.String,System.String)">
+            <summary>
+                Initialize this object with a filename, hash algorithm and compute the hash value.
+            </summary>
+            <param name="name">File name</param>
+            <param name="hashAlgorithm">Hash algorithm</param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.FileDetails.#ctor(System.IO.Stream,System.String)">
+            <summary>
+                Initialize this object with a hash algorithm and compute the hash value.
+            </summary>
+            <param name="stream">contents of the file</param>
+            <param name="hashAlgorithm">Hash algorithm</param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.FileDetails.Equals(System.Object)">
+            <summary>
+                Determines whether two instances are equal.
+            </summary>
+            <param name="obj">object to compare</param>
+            <returns>true if the two objects are equal.</returns>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.FileDetails.GetHashCode">
+            <summary>
+                Serves as a hash function for this type. 
+            </summary>
+            <returns>A hash code for this object.</returns>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.FileDetails.op_Equality(Microsoft.OfficeLabs.Update.FileDetails,Microsoft.OfficeLabs.Update.FileDetails)">
+            <summary>
+                Determines whether two instances are equal.
+            </summary>
+            <param name="fd1"></param>
+            <param name="fd2"></param>
+            <returns>true if the two objects are equal.</returns>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.FileDetails.op_Inequality(Microsoft.OfficeLabs.Update.FileDetails,Microsoft.OfficeLabs.Update.FileDetails)">
+            <summary>
+                Determines whether two instances are not equal.
+            </summary>
+            <param name="fd1"></param>
+            <param name="fd2"></param>
+            <returns>true if the two objects are not equal.</returns>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.FileDetails.VerifyHash(Microsoft.OfficeLabs.Update.FileDetails)">
+            <summary>
+                Verify the file hash.
+            </summary>
+            <param name="fileDetail"></param>
+            <returns>true if the file matches its file hash.</returns>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.FileDetails.VerifyHash(System.String,System.String,System.Byte[])">
+            <summary>
+                Verify the file hash.
+            </summary>
+            <param name="path">Path to the file to verify.</param>
+            <param name="hashAlgorithm">Hash algorithm</param>
+            <param name="hashValue">Hash value</param>
+            <returns>true if the file matches the hash value.</returns>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.FileDetails.VerifyHash(System.IO.Stream,System.String,System.Byte[])">
+            <summary>
+                Verify the file hash.
+            </summary>
+            <param name="stream">Contents of the file to verify.</param>
+            <param name="hashAlgorithm">Hash algorithm</param>
+            <param name="hashValue">Hash value</param>
+            <returns>true if the contents match the hash value.</returns>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.FileDetails.ComputeHash(System.String,System.String)">
+            <summary>
+                Compute the file hash.
+            </summary>
+            <param name="path">Path to the file.</param>
+            <param name="algorithm">Hash algorithm</param>
+            <returns>Hash value</returns>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.FileDetails.ComputeHash(System.IO.Stream,System.String)">
+            <summary>
+                Compute the file hash.
+            </summary>
+            <param name="stream">Contents of the file</param>
+            <param name="algorithm">Hash algorithm</param>
+            <returns>Hash value</returns>
+        </member>
+        <member name="P:Microsoft.OfficeLabs.Update.FileDetails.Name">
+            <summary>
+                Name of the file to download.
+            </summary>
+        </member>
+        <member name="P:Microsoft.OfficeLabs.Update.FileDetails.HashAlgorithm">
+            <summary>
+                Hash algorithm used to compute the HashValue.
+            </summary>
+        </member>
+        <member name="P:Microsoft.OfficeLabs.Update.FileDetails.HashValue">
+            <summary>
+                Hash value for this file.
+            </summary>
+        </member>
+        <member name="T:Microsoft.OfficeLabs.Update.Manifest">
+            <summary>
+                Encapsulates information about a release.
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.Manifest.OtherElements">
+            <summary>
+                Gets the other XML elements transported with the manifest.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.Manifest.#ctor">
+            <summary>
+                Initializes a new instance of the <see cref="T:Microsoft.OfficeLabs.Update.Manifest"/> class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.Manifest.Clear">
+            <summary>
+                Clears out the <see cref="T:Microsoft.OfficeLabs.Update.Manifest"/> back to its empty state.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.Manifest.FixupFields">
+            <summary>
+                Make internal data canonical.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.Manifest.Load(System.Xml.XmlReader,System.Security.Cryptography.AsymmetricAlgorithm)">
+            <summary>
+                Loads a <see cref="T:Microsoft.OfficeLabs.Update.Manifest"/>.
+            </summary>
+            <param name="reader">An XmlReader.</param>
+            <param name="verifyingKey">Key to use first for verifying a digital signature.</param>
+            <returns>Manifest on success.</returns>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.Manifest.Load(System.String,System.Security.Cryptography.AsymmetricAlgorithm)">
+            <summary>
+                Loads a <see cref="T:Microsoft.OfficeLabs.Update.Manifest"/>.
+            </summary>
+            <param name="path">Path to a file to read.</param>
+            <param name="verifyingKey"></param>
+            <returns>Manifest on success.</returns>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.Manifest.Load(System.String)">
+            <summary>
+                Loads a <see cref="T:Microsoft.OfficeLabs.Update.Manifest"/>.
+            </summary>
+            <param name="path">Path to a file to read.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.Manifest.Load(System.IO.Stream)">
+            <summary>
+                Loads a <see cref="T:Microsoft.OfficeLabs.Update.Manifest"/>.
+            </summary>
+            <param name="stream">Stream to read.</param>
+            <returns>Manifest on success.</returns>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.Manifest.Load(System.IO.Stream,System.Security.Cryptography.AsymmetricAlgorithm)">
+            <summary>
+                Loads a <see cref="T:Microsoft.OfficeLabs.Update.Manifest"/>.
+            </summary>
+            <param name="stream"></param>
+            <param name="verifyingKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.Manifest.LoadXml(System.String)">
+            <summary>
+                Loads a <see cref="T:Microsoft.OfficeLabs.Update.Manifest"/>.
+            </summary>
+            <param name="xml">String containing the manifest XML.</param>
+            <returns>Manifest on success.</returns>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.Manifest.LoadXml(System.String,System.Security.Cryptography.AsymmetricAlgorithm)">
+            <summary>
+                Loads a <see cref="T:Microsoft.OfficeLabs.Update.Manifest"/>.
+            </summary>
+            <param name="xml"></param>
+            <param name="verifyingKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.Manifest.Save(System.Xml.XmlWriter,System.Security.Cryptography.AsymmetricAlgorithm,System.Security.Cryptography.X509Certificates.X509Certificate)">
+            <summary>
+                Saves a <see cref="T:Microsoft.OfficeLabs.Update.Manifest"/>.
+            </summary>
+            <param name="writer"></param>
+            <param name="signingKey"></param>
+            <param name="cert"></param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.Manifest.Save(System.Xml.XmlWriter,System.Security.Cryptography.AsymmetricAlgorithm)">
+            <summary>
+                Saves a <see cref="T:Microsoft.OfficeLabs.Update.Manifest"/>.
+            </summary>
+            <param name="writer"></param>
+            <param name="signingKey"></param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.Manifest.Save(System.Xml.XmlWriter,System.Security.Cryptography.X509Certificates.X509Certificate2)">
+            <summary>
+                Saves a <see cref="T:Microsoft.OfficeLabs.Update.Manifest"/>.
+            </summary>
+            <param name="writer"></param>
+            <param name="cert"></param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.Manifest.Save(System.Xml.XmlWriter)">
+            <summary>
+                Saves a <see cref="T:Microsoft.OfficeLabs.Update.Manifest"/>.
+            </summary>
+            <param name="writer"></param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.Manifest.Save(System.String,System.Security.Cryptography.AsymmetricAlgorithm,System.Security.Cryptography.X509Certificates.X509Certificate)">
+            <summary>
+                Saves a <see cref="T:Microsoft.OfficeLabs.Update.Manifest"/>.
+            </summary>
+            <param name="path"></param>
+            <param name="signingKey"></param>
+            <param name="cert"></param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.Manifest.Save(System.String,System.Security.Cryptography.AsymmetricAlgorithm)">
+            <summary>
+                Saves a <see cref="T:Microsoft.OfficeLabs.Update.Manifest"/>.
+            </summary>
+            <param name="path"></param>
+            <param name="signingKey"></param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.Manifest.Save(System.String,System.Security.Cryptography.X509Certificates.X509Certificate2)">
+            <summary>
+                Saves a <see cref="T:Microsoft.OfficeLabs.Update.Manifest"/>.
+            </summary>
+            <param name="path"></param>
+            <param name="cert"></param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.Manifest.Save(System.String)">
+            <summary>
+                Saves a <see cref="T:Microsoft.OfficeLabs.Update.Manifest"/>.
+            </summary>
+            <param name="path">Path to a file to write to.</param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.Manifest.Save(System.IO.Stream,System.Security.Cryptography.AsymmetricAlgorithm,System.Security.Cryptography.X509Certificates.X509Certificate)">
+            <summary>
+                Saves a <see cref="T:Microsoft.OfficeLabs.Update.Manifest"/>.
+            </summary>
+            <param name="stream"></param>
+            <param name="signingKey"></param>
+            <param name="cert"></param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.Manifest.Save(System.IO.Stream,System.Security.Cryptography.AsymmetricAlgorithm)">
+            <summary>
+                Saves a <see cref="T:Microsoft.OfficeLabs.Update.Manifest"/>.
+            </summary>
+            <param name="stream"></param>
+            <param name="signingKey"></param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.Manifest.Save(System.IO.Stream,System.Security.Cryptography.X509Certificates.X509Certificate2)">
+            <summary>
+                Saves a <see cref="T:Microsoft.OfficeLabs.Update.Manifest"/>.
+            </summary>
+            <param name="stream"></param>
+            <param name="cert"></param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.Manifest.Save(System.IO.Stream)">
+            <summary>
+                Saves a <see cref="T:Microsoft.OfficeLabs.Update.Manifest"/>.
+            </summary>
+            <param name="stream"></param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.Manifest.SaveXml(System.Security.Cryptography.AsymmetricAlgorithm,System.Security.Cryptography.X509Certificates.X509Certificate)">
+            <summary>
+                Saves a <see cref="T:Microsoft.OfficeLabs.Update.Manifest"/>.
+            </summary>
+            <param name="signingKey"></param>
+            <param name="cert"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.Manifest.SaveXml(System.Security.Cryptography.AsymmetricAlgorithm)">
+            <summary>
+                Saves a <see cref="T:Microsoft.OfficeLabs.Update.Manifest"/>.
+            </summary>
+            <param name="signingKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.Manifest.SaveXml(System.Security.Cryptography.X509Certificates.X509Certificate2)">
+            <summary>
+                Saves a <see cref="T:Microsoft.OfficeLabs.Update.Manifest"/>.
+            </summary>
+            <param name="cert"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.Manifest.SaveXml">
+            <summary>
+                Saves a <see cref="T:Microsoft.OfficeLabs.Update.Manifest"/>.
+            </summary>
+            <returns>A string containing the manifest XML.</returns>
+        </member>
+        <member name="P:Microsoft.OfficeLabs.Update.Manifest.ProductCode">
+            <summary>
+                Gets or sets the product code for a release.
+            </summary>
+            <remarks>
+                This is a required field.
+            </remarks>
+        </member>
+        <member name="P:Microsoft.OfficeLabs.Update.Manifest.Name">
+            <summary>
+                Gets or sets the the product name for release.
+            </summary>
+            <remarks>
+                It is highly recommended that this field always be filled for
+                UI purposes, but should not be fatal if left empty.
+            </remarks>
+        </member>
+        <member name="P:Microsoft.OfficeLabs.Update.Manifest.Version">
+            <summary>
+                Gets or sets the version of this particular release.
+            </summary>
+            <remarks>
+                This is a required field.
+            </remarks>
+        </member>
+        <member name="P:Microsoft.OfficeLabs.Update.Manifest.Files">
+            <summary>
+                Gets or sets the list of files for this release.
+            </summary>
+            <remarks>
+              <para>
+                Typically, this is only filled in for <see cref="P:Microsoft.OfficeLabs.Update.Updater.UpdateManifest"/>.
+              </para>
+              <para>
+                Each file listed can be a simple filename, a relative URI, or
+                an absolute URI. Simple filenames are treated as relative URIs.
+                Relative URIs are made relative to <see cref="P:Microsoft.OfficeLabs.Update.Manifest.DownloadUrl"/>.
+              </para>
+            </remarks>
+        </member>
+        <member name="P:Microsoft.OfficeLabs.Update.Manifest.Description">
+            <summary>
+                Gets or sets the description for this release.
+            </summary>
+            <remarks>
+                This is an optional field used to describe either the current 
+                release or the product in general. Contents of this field will
+                be rendered in plain text on the UI.
+            </remarks>
+        </member>
+        <member name="P:Microsoft.OfficeLabs.Update.Manifest.ReferenceUrl">
+            <summary>
+                Gets or sets a URL that references more details about the
+                current release or product.
+            </summary>
+            <remarks>
+                This is an optional field.
+            </remarks>
+        </member>
+        <member name="P:Microsoft.OfficeLabs.Update.Manifest.DownloadUrl">
+            <summary>
+                Gets or sets the base URL for any simple filenames or relative
+                URIs listed in <see cref="P:Microsoft.OfficeLabs.Update.Manifest.Files"/>.
+            </summary>
+        </member>
+        <member name="P:Microsoft.OfficeLabs.Update.Manifest.UpdaterAppUrl">
+            <summary>
+                Gets or sets the custom updater application to use when the
+                update is applied.
+            </summary>
+            <remarks>
+              <para>
+                This is an optional field. If not filled, the Office Labs
+                Update Service will use it's default updater application
+                to uninstall the previous version, and install the new
+                version.
+              </para>
+              <para>
+                This can be a simple filename, a relative URI, or an absolute
+                URI.
+              </para>
+            </remarks>
+        </member>
+        <member name="P:Microsoft.OfficeLabs.Update.Manifest.NameVersion">
+            <summary>
+                Gets a string representing the product name and version combined.
+            </summary>
+        </member>
+        <member name="P:Microsoft.OfficeLabs.Update.Manifest.UpdaterApp">
+            <summary>
+                Gets the simple filename for the custom updater application.
+            </summary>
+        </member>
+        <member name="P:Microsoft.OfficeLabs.Update.Manifest.IsSigned">
+            <summary>
+                Gets if the current manifest was signed when it was deserialized.
+            </summary>
+        </member>
+        <member name="P:Microsoft.OfficeLabs.Update.Manifest.IsSignatureValid">
+            <summary>
+                Gets if the current manifest signature was valid when it was deserialized.
+            </summary>
+        </member>
+        <member name="P:Microsoft.OfficeLabs.Update.Manifest.SigningKey">
+            <summary>
+                Gets or sets the key to sign this manifest with.
+            </summary>
+        </member>
+        <member name="T:Microsoft.OfficeLabs.Update.AssemblyProductCodeAttribute">
+            <summary>
+                Attribute to apply to an assembly to store the ProductCode which
+                is used by the CallingAssemblyManifestProvider.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.AssemblyProductCodeAttribute.#ctor(System.String)">
+            <summary>
+                Initializes a new instance of the <typeparamref name="ProductCodeAttribute"/>
+                class with the product code of the assembly being attributed.
+            </summary>
+            <param name="productCode">Product code as a Guid parsable string</param>
+        </member>
+        <member name="P:Microsoft.OfficeLabs.Update.AssemblyProductCodeAttribute.ProductCode">
+            <summary>
+                Gets and sets the ProductCode associated with the containing
+                assembly.
+            </summary>
+        </member>
+        <member name="T:Microsoft.OfficeLabs.Update.ProductVersion">
+            <summary>
+                A wrapper around <see cref="P:Microsoft.OfficeLabs.Update.ProductVersion.Version"/> which implements <see cref="T:System.Xml.Serialization.IXmlSerializable"/>.
+            </summary>
+            <remarks>
+                <see cref="T:System.IComparable`1"/> and <see cref="T:System.IEquatable`1"/>
+                also implemented to ease readability in code, and have feature parity with <see cref="P:Microsoft.OfficeLabs.Update.ProductVersion.Version"/>.
+            </remarks>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.ProductVersion.Empty">
+            <summary>
+                Represents a <see cref="T:Microsoft.OfficeLabs.Update.ProductVersion"/> that has no values set.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.ProductVersion.#ctor">
+            <summary>
+                Initializes a new instance of the <see cref="T:Microsoft.OfficeLabs.Update.ProductVersion"/> class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.ProductVersion.#ctor(System.Version)">
+            <summary>
+                Initializes a new instance of the <see cref="T:Microsoft.OfficeLabs.Update.ProductVersion"/> class with a specific version.
+            </summary>
+            <param name="version">Version to be set.</param>
+        </member>
+        <member name="P:Microsoft.OfficeLabs.Update.ProductVersion.Version">
+            <summary>
+                Gets the internal <see cref="P:Microsoft.OfficeLabs.Update.ProductVersion.Version"/> object.
+            </summary>
+        </member>
+        <member name="T:Microsoft.OfficeLabs.Update.ReleaseUrlManifestProvider">
+            <summary>
+                Access a web service at a particular URI to retrieve update information.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.ReleaseUrlManifestProvider.#ctor(Microsoft.OfficeLabs.Update.Updater,System.String)">
+            <summary>
+                Create a Manifest Provider that looks at a particular URL.
+            </summary>
+            <param name="updater">Updater associate with this provider</param>
+            <param name="baseUrl">Base URL for manifest query</param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.ReleaseUrlManifestProvider.#ctor(Microsoft.OfficeLabs.Update.Updater,System.Uri)">
+            <summary>
+                Create a Manifest Provider that looks at a particular URI.
+            </summary>
+            <param name="updater">Updater associate with this provider</param>
+            <param name="baseUri">Base URI for manifest query</param>
+        </member>
+        <member name="P:Microsoft.OfficeLabs.Update.ReleaseUrlManifestProvider.Updater">
+            <summary>
+                Gets the Updater associated with this provider.
+            </summary>
+        </member>
+        <member name="P:Microsoft.OfficeLabs.Update.ReleaseUrlManifestProvider.BaseUri">
+            <summary>
+                Gets the URI to use for retrieving a manifest.
+            </summary>
+        </member>
+        <member name="P:Microsoft.OfficeLabs.Update.ReleaseUrlManifestProvider.Manifest">
+            <summary>
+                Gets the manifest found at a particular URI.
+            </summary>
+        </member>
+        <member name="T:Microsoft.OfficeLabs.Update.RunningApplicationManifestProvider">
+            <summary>
+                Implements an <see cref="T:Microsoft.OfficeLabs.Update.IManifestProvider"/> which returns a
+                <see cref="P:Microsoft.OfficeLabs.Update.RunningApplicationManifestProvider.Manifest"/> read from <i>app.exe</i>.release.
+            </summary>
+            <remarks>
+                <i>app.exe</i>.release. is found by using Application.ExecutablePath.
+            </remarks>
+        </member>
+        <member name="P:Microsoft.OfficeLabs.Update.RunningApplicationManifestProvider.Manifest">
+            <summary>
+                Gets the <see cref="P:Microsoft.OfficeLabs.Update.RunningApplicationManifestProvider.Manifest"/> read from <i>app.exe</i>.release.
+            </summary>
+        </member>
+        <member name="T:Microsoft.OfficeLabs.Update.Singleton`1">
+             <summary>
+                 Provides a singleton instance of class <typeparamref name="T"/>
+             </summary>
+             <remarks>
+             <para>
+                 Class <typeparamref name="T"/> is constructed lazily when 
+                 <see cref="P:Microsoft.OfficeLabs.Update.Singleton`1.Instance"/> is accessed for the first time.
+             </para>
+             </remarks>
+             <example>
+                 This fragment shows how to use the this class.
+             <code>
+                 class Highlander
+                 {
+                     public static int Instances { get; private set; }
+                     public int Wins { get; private set; }
+            
+                     // private constructor to ensure no random 'new Highlander()' calls.
+                     Highlander()
+                     {
+                         ++Instances;
+                     }
+                     
+                     public void DoQuickening()
+                     {
+                         ++Wins;
+                     }
+                 }
+                 
+                 class App
+                 {
+                     public static void Main()
+                     {
+                         Singleton&lt;Highlander&gt;.Instance.DoQuickening();
+                         
+                         Highlander highlander = Singleton&lt;Highlander&gt;.Instance;
+                         Debug.Assert(highlander == Singleton&lt;Highlander&gt;.Instance);
+                         highlander.DoQuickening();
+                         Debug.Assert(2 == Singleton&lt;Highlander&gt;.Instance.Wins);
+                         Debug.Assert(1 == Highlander.Instances);
+                     }
+                 }
+             </code>
+             </example>
+             <typeparam name="T">
+                 Class to treat as a singleton.
+             </typeparam>
+        </member>
+        <member name="P:Microsoft.OfficeLabs.Update.Singleton`1.Instance">
+            <summary>
+                Singleton instance of class <typeparamref name="T" />.
+            </summary>
+            <value>
+                The Instance returns the singleton instance of class <typeparamref name="T" />.
+            </value>
+        </member>
+        <member name="T:Microsoft.OfficeLabs.Update.Updater">
+            <summary>
+                Encapsulates the methods and data for checking, downloading, and 
+                applying an update.
+            </summary>
+            <remarks>
+                This class provides a finer degree of control over when and how
+                updates are checked, downloaded, and applied. Users can choose
+                to make synchronous or asynchronous checks and downloads. Users
+                can override the how the <see cref="T:Microsoft.OfficeLabs.Update.Manifest"/> for the current
+                and/or the update is retrieved. Users can override the look and
+                feel of the dialog that appears to confirm the user's intent to
+                apply an update.
+            </remarks>
+            <seealso cref="T:Microsoft.OfficeLabs.Update.AutomaticUpdater"/>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.Updater.ProductsRegistryKey">
+            <summary>
+                Registry key for keeping track of products and any per user data related to them.
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.Updater.SkipVersionValueName">
+            <summary>
+                Registry key value name for remembering which versions to skip.
+            </summary>
+        </member>
+        <member name="F:Microsoft.OfficeLabs.Update.Updater.EnableUpdateValueName">
+            <summary>
+                Registry key value name for remembering which versions to skip.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.Updater.#ctor">
+            <summary>
+                Initializes an instance of <see cref="T:Microsoft.OfficeLabs.Update.Updater"/> class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.Updater.Finalize">
+            <summary>
+                Destroys an instance of <see cref="T:Microsoft.OfficeLabs.Update.Updater"/> class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.Updater.Dispose">
+            <summary>
+                Disposes of the current instance of <see cref="T:Microsoft.OfficeLabs.Update.Updater"/> class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.Updater.DisposeIfDisposable``1(``0)">
+            <summary>
+                Helper function to dispose of IDisposable objects.
+            </summary>
+            <typeparam name="T">any type</typeparam>
+            <param name="obj">any object</param>
+            <returns>default(T)</returns>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.Updater.Dispose(System.Boolean)">
+            <summary>
+                Disposes of the current instance of <see cref="T:Microsoft.OfficeLabs.Update.Updater"/> class.
+            </summary>
+            <param name="isDisposing">Tru if this is an explicit Dispose() call.</param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.Updater.CheckForUpdateAsync">
+            <summary>
+                Check for an update asynchronously.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.Updater.CheckForUpdateCancelAsync">
+            <summary>
+                Cancel asynchronous check for updates.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.Updater.OnCheckForUpdateCompleted(Microsoft.OfficeLabs.Update.CheckForUpdateCompletedEventArgs)">
+            <summary>
+                Raises the <see cref="E:Microsoft.OfficeLabs.Update.Updater.CheckForUpdateCompleted"/> event.
+            </summary>
+            <param name="e">Event data.</param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.Updater.CheckForUpdate">
+            <summary>
+                Check for an update.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.Updater.EnsureDownloadPath">
+            <summary>
+            Ensure that <see cref="P:Microsoft.OfficeLabs.Update.Updater.DownloadPath"/> has been set.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.Updater.DownloadUpdateAsync">
+            <summary>
+                Download the update asynchronously.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.Updater.DownloadUpdateCancelAsync">
+            <summary>
+                Cancel the asynchronous update download.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.Updater.OnDownloadUpdateCompleted(Microsoft.OfficeLabs.Update.DownloadUpdateCompletedEventArgs)">
+            <summary>
+                Fires the <see cref="E:Microsoft.OfficeLabs.Update.Updater.DownloadUpdateCompleted"/> event.
+            </summary>
+            <param name="e">Event data.</param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.Updater.VerifyFileHashes">
+            <summary>
+                Verify that the file contents match up with the indicated file hash values.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.Updater.DownloadUpdate">
+            <summary>
+                Download an update.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.Updater.ApplyUpdate">
+            <summary>
+                Apply the update without launching any UI to verify user intent.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.Updater.ApplyUpdate(System.String)">
+            <summary>
+                Apply the update without launching any UI to verify user intent.
+            </summary>
+            <param name="restartApp">Application to launch after update is applied.</param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.Updater.GetProductRegistryKeyPath(Microsoft.OfficeLabs.Update.Manifest,System.Boolean)">
+            <summary>
+                Compute the registry key path for a given manifest.
+            </summary>
+            <remarks>
+                Note that this path has the product code enclosed in curly braces unlike the rest
+                of the code which prefers the string format "D".
+            </remarks>
+            <param name="manifest">Current manifest.</param>
+            <param name="isFull">Include the hive prefix.</param>
+            <returns>Registry key path for a product.</returns>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.Updater.LoadSkipVersion(Microsoft.OfficeLabs.Update.Manifest)">
+            <summary>
+                Retrieve the version number that the user requested be skipped.
+            </summary>
+            <param name="manifest">Current manifest.</param>
+            <returns>Version number to be skipped.</returns>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.Updater.SaveSkipVersion(Microsoft.OfficeLabs.Update.Manifest)">
+            <summary>
+                Save the version number of the manifest as a version to be skipped.
+            </summary>
+            <param name="manifest">Update manifest.</param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.Updater.ClearSkipVersion(Microsoft.OfficeLabs.Update.Manifest)">
+            <summary>
+                Clear the version number that was to be skipped.
+            </summary>
+            <param name="manifest">Current manifest.</param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.Updater.CreateApplyUpdateForm">
+            <summary>
+                Creates a <see cref="T:System.Windows.Forms.Form"/> the queries the user's intent
+                to install an update.
+            </summary>
+            <returns>A <see cref="T:System.Windows.Forms.Form"/>.</returns>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.Updater.ShowApplyUpdateDialog">
+            <summary>
+                Show the dialog to confirm the user's intentions. Remember if 
+                the user wants to skip the current update.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.Updater.LaunchUpdaterExecutable(System.String,System.String)">
+            <summary>
+                Launches the updater application which takes care of waiting
+                for the current application to end, uninstalling the previous
+                version, and installing the new version.
+            </summary>
+            <param name="file"></param>
+            <param name="restartApp"></param>
+        </member>
+        <member name="M:Microsoft.OfficeLabs.Update.Updater.LaunchUpdaterExecutable(System.String)">
+            <summary>
+                Launches the updater application which takes care of waiting
+                for the current application to end, uninstalling the previous
+                version, and installing the new version.
+            </summary>
+        </member>
+        <member name="P:Microsoft.OfficeLabs.Update.Updater.CurrentManifestProvider">
+            <summary>
+                Gets or sets the <see cref="T:Microsoft.OfficeLabs.Update.IManifestProvider"/> to use for 
+                retrieving the current manifest.
+            </summary>
+            <remarks>
+                The default implementation uses <see cref="T:Microsoft.OfficeLabs.Update.CompositeManifestProvider"/>
+                filled with <see cref="T:Microsoft.OfficeLabs.Update.CallingAssemblyManifestProvider"/> and
+                <see cref="T:Microsoft.OfficeLabs.Update.RunningApplicationManifestProvider"/>.
+            </remarks>
+        </member>
+        <member name="P:Microsoft.OfficeLabs.Update.Updater.DownloadedManifest">
+            <summary>
+                Gets the <see cref="T:Microsoft.OfficeLabs.Update.Manifest"/> last downloaded from the
+                <see cref="P:Microsoft.OfficeLabs.Update.Updater.UpdateManifestProvider"/>.
+            </summary>
+        </member>
+        <member name="P:Microsoft.OfficeLabs.Update.Updater.CurrentManifest">
+            <summary>
+                Gets the <see cref="T:Microsoft.OfficeLabs.Update.Manifest"/> last retrieved from the
+                <see cref="P:Microsoft.OfficeLabs.Update.Updater.CurrentManifestProvider"/>.
+            </summary>
+        </member>
+        <member name="P:Microsoft.OfficeLabs.Update.Updater.IsUpdateEnabled">
+            <summary>
+                Gets or sets whether the <see cref="T:Microsoft.OfficeLabs.Update.Updater"/> instance is 
+                currently enabled to checked and download updates. Default is true.
+            </summary>
+            <remarks>
+                This is to enable users to opt out of checking and getting
+                updates. This is slightly different form <see cref="P:Microsoft.OfficeLabs.Update.Updater.IsUpdateSkipped"/> which
+                continues to check for updates, but just won't prompt for the
+                version that was specifically tagged to be skipped.
+            </remarks>
+        </member>
+        <member name="P:Microsoft.OfficeLabs.Update.Updater.IsBusy">
+            <summary>
+                Gets whether the <see cref="T:Microsoft.OfficeLabs.Update.Updater"/> instance is currently
+                busy checking for updates, downloading, or applying.
+            </summary>
+            <remarks>
+                Derived classes can also set this bool.
+            </remarks>
+        </member>
+        <member name="P:Microsoft.OfficeLabs.Update.Updater.IsUpdateAvailable">
+            <summary>
+                Gets whether an update is currently available.
+            </summary>
+        </member>
+        <member name="P:Microsoft.OfficeLabs.Update.Updater.IsUpdateDownloaded">
+            <summary>
+                Gets whether an update has been downloaded.
+            </summary>
+        </member>
+        <member name="P:Microsoft.OfficeLabs.Update.Updater.LastDownloadError">
+            <summary>
+                Gets the last error encountered while downloading.
+            </summary>
+        </member>
+        <member name="P:Microsoft.OfficeLabs.Update.Updater.DownloadPath">
+            <summary>
+                Gets the path where updates have been downloaded.
+            </summary>
+            <remarks>
+                Derived classes can set the download path.
+            </remarks>
+        </member>
+        <member name="P:Microsoft.OfficeLabs.Update.Updater.UpdateManifest">
+            <summary>
+                Gets the latest manifest retrieved from <see cref="P:Microsoft.OfficeLabs.Update.Updater.UpdateManifestProvider"/>.
+            </summary>
+            <remarks>
+                Derived classes can also set this property.
+            </remarks>
+        </member>
+        <member name="P:Microsoft.OfficeLabs.Update.Updater.VerifyingKey">
+            <summary>
+                Gets or sets the key used to validate the digital signature on manifests. 
+            </summary>
+            <remarks>
+                Manifest providers, particularly UpdateManifestProviders, should check the digitial signatures of
+                manifests they pick up, particular if they may come from sources that maybe attacked or compromised.
+                This value defaults to the key used to sign this assembly.
+                <see cref="P:Microsoft.OfficeLabs.Update.Updater.UpdateManifestProvider"/>
+            </remarks>
+        </member>
+        <member name="P:Microsoft.OfficeLabs.Update.Updater.UpdateManifestProvider">
+            <summary>
+                Gets or sets the <see cref="T:Microsoft.OfficeLabs.Update.IManifestProvider"/> to use to
+                check for updates.
+            </summary>
+            <remarks>
+                The default implementation checks the web service running at
+                http://olupdateservice, but users can override this by setting
+                this property and using a custom provider, or chaining a set
+                of providers. <seealso cref="T:Microsoft.OfficeLabs.Update.CompositeManifestProvider"/>
+            </remarks>
+        </member>
+        <member name="E:Microsoft.OfficeLabs.Update.Updater.CheckForUpdateCompleted">
+            <summary>
+                Occurs when a check for update has completed successfully, or 
+                has encountered an error, or has been canceled.
+            </summary>
+        </member>
+        <member name="E:Microsoft.OfficeLabs.Update.Updater.DownloadUpdateCompleted">
+            <summary>
+                Occurs when an update download has completed successfully, or
+                has encountered an error, or has been aborted.
+            </summary>
+        </member>
+        <member name="P:Microsoft.OfficeLabs.Update.Updater.IsUpdateSkipped">
+            <summary>
+                Gets a bool indicating whether the currently available update
+                should be skipped.
+            </summary>
+        </member>
+        <member name="T:Microsoft.OfficeLabs.Update.UpdaterResources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Microsoft.OfficeLabs.Update.UpdaterResources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.OfficeLabs.Update.UpdaterResources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+    </members>
+</doc>

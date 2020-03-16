@@ -1,0 +1,71 @@
+C:\Users\clatonh\Documents\Mesh\Kinect\Projects\Kinect Slider\Kinect Slider\bin\Debug\Kinect Slider.dll
+C:\Users\clatonh\Documents\Mesh\Kinect\Projects\Kinect Slider\Kinect Slider\bin\Debug\Kinect Slider.pdb
+C:\Users\clatonh\Documents\Mesh\Kinect\Projects\Kinect Slider\Kinect Slider\bin\Debug\Kinect Slider.dll.manifest
+C:\Users\clatonh\Documents\Mesh\Kinect\Projects\Kinect Slider\Kinect Slider\bin\Debug\Kinect Slider.vsto
+C:\Users\clatonh\Documents\Mesh\Kinect\Projects\Kinect Slider\Kinect Slider\bin\Debug\Microsoft.Office.Tools.Common.v4.0.Utilities.dll
+C:\Users\clatonh\Documents\Mesh\Kinect\Projects\Kinect Slider\Kinect Slider\bin\Debug\Microsoft.Office.Tools.Common.v4.0.Utilities.xml
+C:\Users\clatonh\Documents\Mesh\Kinect\Projects\Kinect Slider\Kinect Slider\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\clatonh\Documents\Mesh\Kinect\Projects\Kinect Slider\Kinect Slider\obj\Debug\Kinect_Slider.Properties.Resources.resources
+C:\Users\clatonh\Documents\Mesh\Kinect\Projects\Kinect Slider\Kinect Slider\obj\Debug\Kinect_Slider.Ribbon1.resources
+C:\Users\clatonh\Documents\Mesh\Kinect\Projects\Kinect Slider\Kinect Slider\obj\Debug\GenerateResource.read.1.tlog
+C:\Users\clatonh\Documents\Mesh\Kinect\Projects\Kinect Slider\Kinect Slider\obj\Debug\GenerateResource.write.1.tlog
+C:\Users\clatonh\Documents\Mesh\Kinect\Projects\Kinect Slider\Kinect Slider\obj\Debug\Kinect Slider.dll
+C:\Users\clatonh\Documents\Mesh\Kinect\Projects\Kinect Slider\Kinect Slider\obj\Debug\Kinect Slider.pdb
+C:\Users\clatonh\Documents\Mesh\Kinect\Projects\Kinect Slider\Kinect Slider\obj\Debug\Kinect_Slider.frmtest.resources
+C:\Users\clatonh\Documents\Mesh\Kinect\Projects\Kinect Slider\Kinect Slider\bin\Debug\Coding4Fun.Kinect.WinForm.dll
+C:\Users\clatonh\Documents\Mesh\Kinect\Projects\Kinect Slider\Kinect Slider\bin\Debug\Coding4Fun.Kinect.WinForm.pdb
+C:\Users\clatonh\Documents\Mesh\Kinect\Projects\Kinect Slider\Kinect Slider\obj\Debug\Kinect_Slider.frmNext.resources
+C:\Users\clatonh\Documents\Mesh\Kinect\Projects\Kinect Slider\Kinect Slider\obj\Debug\Kinect_Slider.frmPrevious.resources
+C:\Users\clatonh\Documents\Mesh\Kinect\Projects\Kinect Slider\Kinect Slider\obj\Debug\Kinect_Slider.frmKinectInit.resources
+C:\Users\clatonh\Documents\Mesh\Kinect\Projects\Kinect Slider\Kinect Slider\obj\Debug\Kinect_Slider.frmFB.resources
+C:\Users\clatonh.000\Documents\Mesh\Kinect\Projects\Kinect Slider\Kinect Slider\bin\Debug\Kinect Slider.dll
+C:\Users\clatonh.000\Documents\Mesh\Kinect\Projects\Kinect Slider\Kinect Slider\bin\Debug\Kinect Slider.pdb
+C:\Users\clatonh.000\Documents\Mesh\Kinect\Projects\Kinect Slider\Kinect Slider\bin\Debug\Kinect Slider.dll.manifest
+C:\Users\clatonh.000\Documents\Mesh\Kinect\Projects\Kinect Slider\Kinect Slider\bin\Debug\Kinect Slider.vsto
+C:\Users\clatonh.000\Documents\Mesh\Kinect\Projects\Kinect Slider\Kinect Slider\bin\Debug\Coding4Fun.Kinect.WinForm.dll
+C:\Users\clatonh.000\Documents\Mesh\Kinect\Projects\Kinect Slider\Kinect Slider\bin\Debug\Microsoft.Office.Tools.Common.v4.0.Utilities.dll
+C:\Users\clatonh.000\Documents\Mesh\Kinect\Projects\Kinect Slider\Kinect Slider\bin\Debug\Coding4Fun.Kinect.WinForm.pdb
+C:\Users\clatonh.000\Documents\Mesh\Kinect\Projects\Kinect Slider\Kinect Slider\bin\Debug\Microsoft.Office.Tools.Common.v4.0.Utilities.xml
+C:\Users\clatonh.000\Documents\Mesh\Kinect\Projects\Kinect Slider\Kinect Slider\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\clatonh.000\Documents\Mesh\Kinect\Projects\Kinect Slider\Kinect Slider\obj\Debug\Kinect_Slider.frmFB.resources
+C:\Users\clatonh.000\Documents\Mesh\Kinect\Projects\Kinect Slider\Kinect Slider\obj\Debug\Kinect_Slider.frmKinectInit.resources
+C:\Users\clatonh.000\Documents\Mesh\Kinect\Projects\Kinect Slider\Kinect Slider\obj\Debug\Kinect_Slider.frmNext.resources
+C:\Users\clatonh.000\Documents\Mesh\Kinect\Projects\Kinect Slider\Kinect Slider\obj\Debug\Kinect_Slider.frmPrevious.resources
+C:\Users\clatonh.000\Documents\Mesh\Kinect\Projects\Kinect Slider\Kinect Slider\obj\Debug\Kinect_Slider.frmtest.resources
+C:\Users\clatonh.000\Documents\Mesh\Kinect\Projects\Kinect Slider\Kinect Slider\obj\Debug\Kinect_Slider.Properties.Resources.resources
+C:\Users\clatonh.000\Documents\Mesh\Kinect\Projects\Kinect Slider\Kinect Slider\obj\Debug\Kinect_Slider.Ribbon1.resources
+C:\Users\clatonh.000\Documents\Mesh\Kinect\Projects\Kinect Slider\Kinect Slider\obj\Debug\GenerateResource.read.1.tlog
+C:\Users\clatonh.000\Documents\Mesh\Kinect\Projects\Kinect Slider\Kinect Slider\obj\Debug\GenerateResource.write.1.tlog
+C:\Users\clatonh.000\Documents\Mesh\Kinect\Projects\Kinect Slider\Kinect Slider\obj\Debug\Kinect Slider.dll
+C:\Users\clatonh.000\Documents\Mesh\Kinect\Projects\Kinect Slider\Kinect Slider\obj\Debug\Kinect Slider.pdb
+C:\Users\clatonh\Documents\Mesh\Kinect\Projects\Kinect Slider\Kinect Slider\bin\Debug\Kinect.Toolbox.dll
+C:\Users\clatonh\Documents\Mesh\Kinect\Projects\Kinect Slider\Kinect Slider\bin\Debug\Kinect.Toolbox.Voice.dll
+C:\Users\clatonh\Documents\Mesh\Kinect\Projects\Kinect Slider\Kinect Slider\bin\Debug\Kinect.Toolbox.Voice.pdb
+C:\Users\clatonh\Documents\Mesh\Kinect\Projects\Kinect Slider\Kinect Slider\bin\Debug\Kinect Slider.dll.CodeAnalysisLog.xml
+C:\Users\clatonh\Documents\Mesh\Kinect\Projects\Kinect Slider\Kinect Slider\bin\Debug\Kinect Slider.dll.lastcodeanalysissucceeded
+C:\Users\clatonh\Documents\Mesh\Kinect\Projects\Backup Kinect Slider\Kinect Slider\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\clatonh\Documents\Mesh\Kinect\Projects\Backup Kinect Slider\Kinect Slider\obj\Debug\Kinect_Slider.frmFB.resources
+C:\Users\clatonh\Documents\Mesh\Kinect\Projects\Backup Kinect Slider\Kinect Slider\obj\Debug\Kinect_Slider.frmKinectInit.resources
+C:\Users\clatonh\Documents\Mesh\Kinect\Projects\Backup Kinect Slider\Kinect Slider\obj\Debug\Kinect_Slider.frmNext.resources
+C:\Users\clatonh\Documents\Mesh\Kinect\Projects\Backup Kinect Slider\Kinect Slider\obj\Debug\Kinect_Slider.frmPrevious.resources
+C:\Users\clatonh\Documents\Mesh\Kinect\Projects\Backup Kinect Slider\Kinect Slider\obj\Debug\Kinect_Slider.frmtest.resources
+C:\Users\clatonh\Documents\Mesh\Kinect\Projects\Backup Kinect Slider\Kinect Slider\obj\Debug\Kinect_Slider.Properties.Resources.resources
+C:\Users\clatonh\Documents\Mesh\Kinect\Projects\Backup Kinect Slider\Kinect Slider\obj\Debug\Kinect_Slider.Ribbon1.resources
+C:\Users\clatonh\Documents\Mesh\Kinect\Projects\Backup Kinect Slider\Kinect Slider\obj\Debug\GenerateResource.read.1.tlog
+C:\Users\clatonh\Documents\Mesh\Kinect\Projects\Backup Kinect Slider\Kinect Slider\obj\Debug\GenerateResource.write.1.tlog
+C:\Users\clatonh\Documents\Mesh\Kinect\Projects\Backup Kinect Slider\Kinect Slider\bin\Debug\Kinect Slider.dll
+C:\Users\clatonh\Documents\Mesh\Kinect\Projects\Backup Kinect Slider\Kinect Slider\bin\Debug\Kinect Slider.pdb
+C:\Users\clatonh\Documents\Mesh\Kinect\Projects\Backup Kinect Slider\Kinect Slider\bin\Debug\Kinect Slider.dll.manifest
+C:\Users\clatonh\Documents\Mesh\Kinect\Projects\Backup Kinect Slider\Kinect Slider\bin\Debug\Kinect Slider.vsto
+C:\Users\clatonh\Documents\Mesh\Kinect\Projects\Backup Kinect Slider\Kinect Slider\bin\Debug\Coding4Fun.Kinect.WinForm.dll
+C:\Users\clatonh\Documents\Mesh\Kinect\Projects\Backup Kinect Slider\Kinect Slider\bin\Debug\Kinect.Toolbox.dll
+C:\Users\clatonh\Documents\Mesh\Kinect\Projects\Backup Kinect Slider\Kinect Slider\bin\Debug\Kinect.Toolbox.Voice.dll
+C:\Users\clatonh\Documents\Mesh\Kinect\Projects\Backup Kinect Slider\Kinect Slider\bin\Debug\Microsoft.Office.Tools.Common.v4.0.Utilities.dll
+C:\Users\clatonh\Documents\Mesh\Kinect\Projects\Backup Kinect Slider\Kinect Slider\bin\Debug\Microsoft.OfficeLabs.Update.dll
+C:\Users\clatonh\Documents\Mesh\Kinect\Projects\Backup Kinect Slider\Kinect Slider\bin\Debug\Coding4Fun.Kinect.WinForm.pdb
+C:\Users\clatonh\Documents\Mesh\Kinect\Projects\Backup Kinect Slider\Kinect Slider\bin\Debug\Kinect.Toolbox.Voice.pdb
+C:\Users\clatonh\Documents\Mesh\Kinect\Projects\Backup Kinect Slider\Kinect Slider\bin\Debug\Microsoft.OfficeLabs.Update.pdb
+C:\Users\clatonh\Documents\Mesh\Kinect\Projects\Backup Kinect Slider\Kinect Slider\bin\Debug\Microsoft.OfficeLabs.Update.xml
+C:\Users\clatonh\Documents\Mesh\Kinect\Projects\Backup Kinect Slider\Kinect Slider\bin\Debug\Microsoft.Office.Tools.Common.v4.0.Utilities.xml
+C:\Users\clatonh\Documents\Mesh\Kinect\Projects\Backup Kinect Slider\Kinect Slider\obj\Debug\Kinect Slider.dll
+C:\Users\clatonh\Documents\Mesh\Kinect\Projects\Backup Kinect Slider\Kinect Slider\obj\Debug\Kinect Slider.pdb
